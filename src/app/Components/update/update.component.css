@@ -1,0 +1,40 @@
+input {
+  inline-size: 236px;
+  block-size: 35px;
+  margin: 8px;
+  color: black;
+  background-color: aliceblue;
+  border-radius: 5px;
+  border: solid 2.5px red;
+}
+
+button {
+  inline-size: 110px;
+  block-size: 40px;
+  border-radius: 5px;
+  border: solid 2.5px rgb(17, 0, 255);
+}
+
+#tout3 input[required] {
+  border-inline-end: 4px solid orange;
+}
+#tout2 input:invalid {
+  border-inline-end: 4px solid red;
+}
+#tout2 input:valid {
+  border-inline-end: 4px solid green;
+}
+
+table {
+  border-spacing: 4cm;
+  inline-size: 62.5%;
+  border-collapse: separate;
+  border-spacing: 0 0.5cm;
+  margin: 5px;
+}
+th,
+td {
+  text-align: start;
+  border-block-end: 1px solid black;
+  padding: 8px;
+}

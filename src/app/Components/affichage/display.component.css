@@ -1,0 +1,23 @@
+button {
+  inline-size: 2090px;
+  block-size: 45px;
+  font-size: 20px;
+  color: white;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: rgb(140, 202, 233);
+}
+
+p {
+  margin: 10px;
+}
+
+.column-container {
+  column-width: 15cm;
+  display: inline-block;
+}
+
+.column-content {
+  display: block;
+  margin-block-end: 0px; /*espace entre les url*/
+}
