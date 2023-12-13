@@ -121,6 +121,15 @@
     >
       L' url est requise.
     </span>
+
+    <span
+      *ngIf="
+        updateForm.get('url')?.hasError('invalidUrl') &&
+        updateForm.get('url')?.touched
+      "
+    >
+      L'URL n'est pas valide.
+    </span>
     &nbsp;&nbsp;
     <input
       style="

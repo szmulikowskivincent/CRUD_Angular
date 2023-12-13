@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateService } from 'src/Services/update.service';
 
 interface IUpdate {
@@ -26,6 +26,17 @@ export class UpdateComponent implements OnInit {
     this.initializeForm();
     this.loadUpdatesFromLocalStorage();
   }
+
+  urlValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  // Expression régulière pour vérifier le format de l'URL
+  const urlPattern = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\/)?(\S)*$/;
+
+  if (control.value && !urlPattern.test(control.value)) {
+    return { 'invalidUrl': true };
+  }
+
+  return null; // L'URL est valide
+}
 
   initializeForm(): void {
     this.updateForm = this.fb.group({
