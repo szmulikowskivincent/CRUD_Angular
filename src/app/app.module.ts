@@ -7,6 +7,7 @@ import { UpdateComponent } from './Components/update/update.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { DisplayComponent } from './Components/affichage/display.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   
   providers: [],

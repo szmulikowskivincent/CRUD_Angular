@@ -1,7 +1,7 @@
 button {
-  inline-size: 2090px;
+  inline-size: 1850px;
   block-size: 45px;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   margin: 10px;
   border-radius: 5px;
@@ -10,6 +10,10 @@ button {
 
 p {
   margin: 10px;
+}
+
+a {
+ margin: 10px;
 }
 
 .column-container {

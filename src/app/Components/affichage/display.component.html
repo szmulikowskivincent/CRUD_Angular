@@ -33,9 +33,1139 @@
 <p style="color: blue; display: inline">Date: 13/12/2023</p>
 <p style="color: rgb(0, 0, 0); display: inline">Ressource.pdf (Angular)</p>
 &nbsp;
-<a href="assets\pdf\SZMULIKOWSKI (signé et daté).pdf" style="display: inline"
-  >Angular</a
->&nbsp;📁
+<a href="assets\pdf\Angular.pdf" style="display: inline">Angular</a>&nbsp;📁
+<!-- Add textarea for the PDF visualization --><textarea
+  style="
+    display: block;
+    inline-size: 97%;
+    block-size: 50px;
+    margin: 10px;
+    font-size: 16px;
+  "
+>
+Angular
+COGNITIC
+Table des matières
+1. Introduction
+2. Projet Angular
+3. Binding
+4. Pipes
+5. Directives
+6. @Input / @Output
+7. Services et Injection
+8. Formulaires
+9. Routing
+10. Storage
+11. Observable
+12. HttpClient
+13. Publication
+2
+COGNITIC
+1. Introduction
+3
+COGNITIC
+Table des matières
+4
+Introduction
+1.1 Angular ? C’est quoi ?
+1.2 Avantages / Inconvénients
+1.3 NodeJS
+1.4 Typescript
+1.5 Installation
+1.6 Outils
+COGNITIC
+1.1 Angular ? C’est quoi ?
+
+5
+Angular est un framework de développement front-end mis
+en place par Google et basé sur Javascript (au travers de
+NodeJS et Typescript)
+Il permet de mettre en place des SPA (Single Page
+Application). Autrement dit : la navigation entre les “pages”
+semble invisible pour l’utilisateur. Il a l’impression de rester
+constamment sur la même page puisqu’il n’y a pas de
+rechargement de l’intégralité du site d’une page à l’autre.
+La première version du framework date de 2016 et se met à
+jour régulièrement pour répondre aux attentes du monde
+professionnel.
+https://angular.io/
+COGNITIC
+1.2 Avantages / Inconvénients
+ Pour
+- Framework complet pour le front
+- Injection de dépendances
+- Compilation rapide
+- Documentation complète et
+simple
+- Evolue constamment
+- Modèle proche du MVVM
+- Avantage du Typescript
+6
+ Contre
+- Lourdeur de la syntaxe
+- Pas d’accès direct à une DB
+- Migration d’une version à l’autre
+problématique (les librairies
+mettent du temps à suivre)
+- Courbe d’apprentissage énorme
+COGNITIC
+1.3 NodeJS
+7
+En quelques mots : NodeJS est un environnement
+back-end développé en Javascript sur base de la
+machine virtuelle V8, moteur d’exécution JS (qui se
+cache dans Chrome).
+Il permet de manière très légère, de mettre en place
+des APIs (grâce à Express) et permet l'exécution du
+Javascript côté serveur.
+Il est associé à un gestionnaire de paquet - NPM -
+qui fonctionne via un terminal et permet d’ajouter
+des dépendances tel que Angular, à un projet. https://nodejs.org/en/
+COGNITIC
+1.4 Typescript
+8
+Il s’agit d’un langage développé par Microsoft pour
+faciliter et “sécuriser” la production de code
+Javascript.
+Typescript est en réalité une surcouche du JS. Ce qui
+signifie que tout code JS est un code Typescript
+valide.
+Il apporte les notions de programmation orienté
+objet et de typage statique des variables qui font
+cruellement défaut à Javascript pour en faire un
+langage beaucoup plus structuré et facile d’accès.
+https://www.typescriptlang.org/
+COGNITIC
+1.5 Installation d’Angular
+1. Installer NodeJS (prendre la version LTS sur le site officiel)
+2. Installer Angular en ligne de commande (WIN+R => CMD)
+npm install -g @angular/cli
+Le paramètre -g permet une installation globale au niveau du système et pas
+uniquement dans le dossier ou vous vous situez
+3. Vérifier que l’installation est bien terminée en tapant
+ng version
+9
+COGNITIC
+1.6 Outils
+L’éditeur utilisé dans le cadre du cours sera Visual Studio Code
+https://code.visualstudio.com/
+Il permettra d’installer des plug-ins spécifiques à Angular :
+- Angular Schematics => exécution de commande via un menu contextuelle
+- Angular Snippets
+- Angular Language Service
+Les deux suivants amènent des aides au code comme l’auto complétion ou des
+raccourcis d’écriture.
+10
+COGNITIC
+2. Projet Angular
+11
+Mise en place
+COGNITIC
+Table des matières
+12
+Projet Angular
+2.1 Création du projet
+2.2 Arborescence
+2.3 Les Modules
+2.4 Création de module
+2.5 Les Composants
+2.6 Cycle de vie des composants
+2.7 Intro à la navigation
+COGNITIC
+2.1 Commandes et options
+- ng new “nom_du_projet” => Crée un dossier “nom_du_projet” en y copiant tout
+ce qui est nécessaire au framework
+ Options
+13
+--skip-tests Désactive la copie des fichiers de test unitaires
+--routing Ajoute le routage à l’application
+--strict (true/false) Utilisation du mode strict qui force l’initialisation des
+variables/propriété dans le constructeur
+--skip-git Désactive l’initialisation par défaut du dépôt Git
+Liste des options : https://angular.io/cli/new
+COGNITIC
+2.1b Installation du projet
+Une fois la commande basique exécutée (ng new “projet”), le système vous posera 2
+questions
+1. Ajouter angular routing ? => répondre oui
+2. Mode de template css ? => choisir SCSS (pour plus de compatibilité avec les
+différents framework/librairie graphiques)
+Ces questions peuvent être évitées en ajoutant les options adéquates à la commande
+de base.
+14
+COGNITIC
+2.1c Démarrer le serveur -- NG SERVE
+La commande - ng serve - compile et démarre l’application sur le port 4200 (par défaut).
+Dans le cas où vous auriez plusieurs applications qui tournent en parallèle, il est
+possible de modifier le port de l’app
+ng serve --port=42XX
+L’option --open ouvre l’app dans le navigateur par défaut une fois celle ci compilée
+Une fois compilée et démarrée, l’application pourra être modifiée sans avoir à relancer le
+serveur. Le processus “Ahead-of-time” se charge de recompilé en direct l’application à
+chaque sauvegarde de fichier.
+15
+COGNITIC
+2.2 Arborescence du projet
+Les différents dossiers et fichiers importants
+16
+Fichier/dossier Utilité
+/e2e Dossier réservé aux tests end user
+/node_modules Contient tout les modules nécessaire au fonctionnement du framework, ainsi que les
+module ajouté par la suite ( => ne pas toucher !!! )
+/src Dossier principal de développement. C’est là qu’on va travailler
+angular.json Configuration du workspace et du projet
+package.json Liste et version des packages utilisés dans le projet
+tsconfig.json Configuration de la compilation Typescript
+tslint.json Configuration permettant la vérification du code à chaud sans le compiler
+COGNITIC
+2.2 Arborescence du projet
+Détails du dossier /src
+17
+Fichier/dossier Utilité
+/app C’est la que l’application prend vie. On y intégrera nos pages ainsi que leur logique
+/assets Contiendra les éventuelles média supplémentaires (images, sons, vidéos)
+nécessaires à l’applications
+/environments Permettra de localiser les variables d’environnement tel que les adresses d’ API
+index.html Point d’entrée de l’application. Contiendra les imports css/js éventuelles
+styles.scss Feuille de style par défaut de l’application
+main.ts Permet de définir le module de démarrage le l’app (laisser par défaut de préférence)
+COGNITIC
+2.3 app module
+La programmation Angular est dite “Modulaire” ce qui signifie que nous allons mettre en place plusieurs
+modules et les faires communiquer entre eux. Nous verrons cela plus tard. Attardons nous sur le module
+principale de notre application. Celui créé par défaut lors de la création d’un projet et qui sera le point
+d’entrée de notre app
+18
+Il s’agit du root module (module parent) qui englobe toute l’application.
+Il propose son propre routage, il s’agit également du point d’entrée vers
+les différentes logiques, fonctionnelle et visuelle, de votre application
+Pour des raisons pratiques, nous ferons l’impasse sur tous les fichiers suffixés .spec.ts . Ces fichiers
+étant réservés aux tests unitaires.
+COGNITIC
+2.3 app.module.ts
+Le fichier app.module.ts représente la configuration du module principal et propose différentes parties
+que nous allons détaillés ici
+19
+Le décorateur @NgModule signifie au système que le fichier est le point
+d’entrée du module et permet d’apporter une structure à celui ci
+declarations : [] => Nous y déclarons le/les composants utilisé(s) par le module
+imports : [] => Contient les différents modules importés et utilisés par celui en cours
+exports : [] => Permet d’exporter tout ou partie des modules/composants utilisé par
+celui en cours
+providers : [] => Contiendra des informations pour l’injection de dépendances
+bootstrap : [] => Le composant d’amorçage du module (si composant il y a)
+export class AppModule { } => signifie simplement que le module est exporté et
+donc importable ailleurs dans l’application
+COGNITIC
+2.4 Module => création
+20
+Un module contiendra d’office un fichier “nom.module.ts”. Qui, à l’instar du app.module.ts contiendra le
+décorateur @ngModule.
+ng g m nom_du_module => crée un nouveau module
+Aucune obligation n’existe quand à la présence d’un composant ou d’un routing spécifique dans un
+nouveau module (exception faite pour le AppModule)
+Il est néanmoins possible de créer un composant à inclure directement dans un module.
+ng g c nom_du_composant -m nom_du_module
+Ajouter l’option --routing pour inclure “nom-routing.module.ts” au module dés sa création
+COGNITIC
+2.5 Component
+Notre module principale, en plus d’intégrer un routing (que nous détaillerons plus tard), et un fichier de
+configuration (app.module.ts), intègre un component composé de 3 fichiers
+- app.component.html => Template visuel
+- app.component.scss => Feuille de style
+- app.component.ts => Code behind en typescript
+Un component est l’unité de travail en Angular. Autrement dit, nos pages seront basées sur des
+components. Chacun étant composé de ces 3 fichiers (html/css/ts)
+ng generate component “nom_du_composant”|| ng g c “nom_du_composant”
+==> Commande de création d’un nouveau composant
+21
+COGNITIC
+2.5 Component => TS
+C’est ici que nous mettrons en place toute la logique des composants au travers du code Typescript.
+Ce fichier est composé d’un décorateur @Component et d’une classe complète avec son constructeur et
+ses imports.
+22
+Les imports représentent tout modèles, modules ou
+services nécessaires au fonctionnement du composant.
+C’est dans la classe que nous intégrerons la logique
+fonctionnelle (propriétés, méthodes, constructeur, ...)
+COGNITIC
+2.5 Component => TS
+23
+Le décorateur décrit 3 propriétés du composant
+- selector => Permet d’intégrer ce
+composant dans n’importe quelle page
+html
+- templateUrl => Url de la page html liée au
+composant
+- styleUrls => Url de la feuille de style du
+composant
+Exemple d’appel par sélecteur
+Fichier TS
+Fichier HTML
+COGNITIC
+2.5 Component => HTML
+Le fichier.html d’un component contiendra comme son extension l’indique, du code
+HTML principalement. Mais aussi divers choses qui nous viennent du framework
+Angular :
+- Directives
+- Bindings
+- Pipes
+Qui seront bien évidement vues en détails dans les chapitres dédiés
+24
+COGNITIC
+2.6 Intro aux cycles de vie des composants
+Le cycles de vie d’un composant (Hooks) représente les différents instants de son existence. Chacun
+d’eux, demande que la classe du composant implémente l’interface nécessaire à son fonctionnement
+OnInit => Exécute le contenu de la méthode ngOnInit() à l’initialisation du composant
+ Ne s'exécute qu’une seule fois au premier appel du composant
+25
+COGNITIC
+2.6 Intro aux cycles de vie des composants (suite)
+OnDestroy => Exécute le contenu de la méthode ngOnDestroy() à la destruction du composant
+ Permet de libérer la mémoire à la destruction du composant (désinscription aux
+ Observables, fermeture de connexion éventuelle, …)
+26
+COGNITIC
+2.6 Intro aux cycles de vie des composants (fin)
+Les deux hooks présentés précédemment sont les plus fréquemment utilisés. OnInit
+est d’ailleurs implémenté de base à la création d’un nouveau composant.
+Il en existe bien d’autres qui peuvent être utiles à différents moments du
+développement. Ils sont détaillés dans la doc officielle d’Angular
+https://angular.io/guide/lifecycle-hooks
+27
+COGNITIC
+2.7 Les bases de la navigation
+Il est nécessaire de spécifier les routes d’accès à nos composants pour pouvoir naviguer de manière fluide. Nous
+utilisons les “routing-module” pour se faire.
+28
+app-routing.module.ts HTML
+L’utilisation de l’attribut “HREF” implique un rechargement complet du site visible à l’oeil nu, ce qui va à l’encontre du principe de
+Single Page App.
+L’attribut “ROUTERLINK” offre un chargement invisible. En réalité, seul le composant appelé par le routing est chargé à l’endroit
+ou se trouve la balise <router-outlet></router-outlet> dans le template HTML
+COGNITIC
+2.7 Les bases de la navigation
+29
+Grâce à la propriété “children”, il est possible de définir des
+liens enfants, qui pourrait correspondre à une architecture
+Dossier/Sous-dossier.
+Pour rendre ceci fonctionnel, il ne faudra pas oublier
+d’ajouter <router-outlet></router-outlet> au niveau du
+composant parent (HomeCompenent)
+L’exemple précédent donne lieu à l’url :
+http://localhost:4200/home/demo
+COGNITIC
+2.7 Les bases de la navigation
+Dans le cas d’une navigation inter-module, il
+sera nécessaire d’importer le routing des
+modules secondaires au niveau du module
+principal de l’application pour que celui ci ait
+accès aux routes déclarées dans les autres.
+30
+Il faut également déclarer le lien vers le
+nouveau module dans le routing du
+AppModule.
+Nous utilisons cette méthode pour créer un
+Lazy Loading entre les modules. Ce qui veut
+dire que les sous modules et leur
+composants ne seront chargés qu’à la
+demande et pas directement au lancement
+de l’application.
+Nous choisissons le Lazy-Loading Vs le Eager-Loading
+pour des questions de performances
+COGNITIC
+Exercice
+Mettre en place 2 nouveaux modules (Demo et Exercice). Comprenant chacun un composant
+d’amorçage et un routing spécifique.
+Créer un composant de navigation et l’inclure au template de base (menu à droite de la page)
+Tous les composants et modules doivent être accessible à partir de la page d'accueil de
+l’application
+31
+COGNITIC
+3. Bindings
+32
+COGNITIC
+Table des matières
+33
+Bindings
+3.1 Property Binding
+3.2 Event Binding
+3.3 Attribute Binding
+COGNITIC
+3.1 Property bindings
+Le property-binding crée une liaison entre une propriété Typescript et le template HTML. Il s’agit
+de faire interagir les 2 fichiers de manières à apporter un certain dynamisme à nos pages.
+Il existe 2 types de property-binding :
+- One-way => lecture du contenu d’une propriété dans le template visuel
+- Two-way => liaison montante et descendante d’une propriété
+(Les propriétés déclarée dans le fichier .TS sont par défaut public. Il est possible de changer cette accessibilité,
+mais une propriété “private” ne pourra pas être accessible dans la page HTML)
+34
+COGNITIC
+3.1 Property bindings : exemple
+35
+Typescript Html
+One Way
+Two Way
+Si la valeur de maVariable est modifiée de
+quelque manière que ce soit (ts ou html),
+la mise à jour se fait en temps réel des deux
+côtés sans rafraichir la page.
+Il est nécessaire d’importer FormsModule
+au niveau du module pour que [(ngModel)]
+soit disponible
+COGNITIC
+3.2 Event Binding
+L’event binding permet de lier un événement JS (ex : onClick, onChange, onFocus,....) du template
+HTML à une méthode définie dans le typescript.
+36
+Il est évidemment possible de passer des paramètres à notre méthode
+COGNITIC
+3.3 Attribute Binding
+Il est possible de conditionner l’apparition d’un attribut grâce à une expression
+booléenne dans l’html.
+37
+Il est également possible de lier l’attribut à une propriété
+TS HTML
+COGNITIC
+4. Pipes
+38
+COGNITIC
+Table des matières
+39
+Les Pipes
+4.1 Les pipes. Comment ça marche ?
+4.2 Les principaux pipes
+4.3 Custom Pipe
+COGNITIC
+4.1 Les pipes - Comment ça marche ?
+40
+Les pipes permettent de formater ou transformer l’affichage d’une propriété dans un binding.
+Le nom “pipe” vient du caractère utilisé pour y faire appel
+SALUT LES GARS !
+TypeScript
+HTML
+Navigateur
+COGNITIC
+4.2 Les principaux pipes
+41
+Pipe Utilité
+| date(‘format’) Formate l’affichage de la date
+| uppercase Transforme la chaîne en majuscule
+| lowercase Transforme la chaîne en minuscule
+| titlecase Le premier caractère de chaque mot en majuscule
+| currency Prend une devise en paramètre (EUR/USD/…)
+| json Convertit la valeur en chaîne Json (utile pour le débuggage)
+Il s’agit des principaux pipes utilisés : Liste complète sur la doc officielle
+COGNITIC
+4.3 Les custom pipes
+Il est possible de créer des pipes custom permettant de répondre à nos attentes précises comme
+des conversion de valeur, format d’affichage spécifique ou tout autre besoin rencontré.
+ng g pipe nom_du_pipe
+42
+Le décorateur @Pipe permet de
+définir le nom d’appel du pipe
+La classe ainsi créée implémente l’interface PipeTransform
+COGNITIC
+4.3 Les custom pipes
+Il est possible de définir nos propres paramètres pour notre pipes. Il demande de définir la
+méthode transform()
+43
+Le premier paramètre(value : unknown)
+représente la propriété sur laquelle le pipe
+va être appliqué. Il est bien entendu que
+les types doivent correspondre.
+Le second (...args: unknown[]), tous les
+paramètres supplémentaires éventuels qui
+pourraient accompagner le pipe
+En dernier lieu, il sera nécessaire de
+définir le type de retour de notre pipe
+1 2
+3
+COGNITIC
+4.3 Les custom pipes (Problème)
+44
+ng g m Shared
+Nous rencontrons dès lors un problème
+d’import au niveau de nos différents
+modules.
+Le système vous signifie que votre pipe
+n’est pas inclu/trouvé par le module Demo.
+Il faut recourir au subterfuge du
+“SharedModule”.
+Autrement dit : un module qui servira de
+passerelle pour vos différents pipes, directives,
+services ou composants communs et partagés
+entre différents modules. Ce module devra être
+importé dans chaque module ou vos éléments
+communs doivent se retrouver
+SharedModule DemoModule
+COGNITIC
+Exercice
+Mettre en place un chronomètre
+- 3 Boutons : Start, Pause, Reset (actif/inactif en fonction des besoins)
+- Affichage “xx minutes xx secondes”
+Astuce : cherchez du côté de setInterval() et du string Interpolation de Typescript ;)
+45
+COGNITIC
+5 Les directives
+46
+COGNITIC
+Table des matières
+47
+Les directives
+5.1 C’est quoi une directive ?
+5.2 Components Directives
+5.3 Structural Directives
+5.4 Custom Directive
+COGNITIC
+5.1 C’est quoi une directive ?
+48
+Il en existe différents types, et la possibilité d’en créer sois-même.
+- Directive de composants (NgClass, NgStyle, NgModel)
+- Directive Structurelle (NgIf, NgFor, NgSwitch)
+- Directive d’attributs (custom directive)
+Les directives sont des classes qui ajoutent un
+comportement supplémentaire aux éléments de
+vos applications Angular. Avec les Built-in
+directives d'Angular, vous pouvez gérer les listes,
+les styles et ce que voient les utilisateurs.
+Elles s’appliquent sur des composants/balises html
+pour en conditionner l’affichage
+COGNITIC
+5.2 Component Directives
+Elles permettent de “toucher” à l’affichage de votre page.
+- NgStyle (permet d’ajouter du code CSS inline à vos balises)
+- NgClass (ajoute une classe CSS en fonction d’une expression booléenne)
+- NgModel (Comme déjà vu, permet le binding two-way d’une propriété)
+49
+COGNITIC
+5.3 Structural directives
+Permettent d’intégrer des structures conditionnelle dans votre template visuel.
+- NgIf (Conditionne l’affichage de contenu sur base d’une expression booléenne)
+- NgFor (Permet de répéter un affichage n fois. Sert principalement à parcourir des
+collections)
+- NgSwitch (Permet des structure conditionnelle type Switch/case comme son nom
+l’indique)
+50
+COGNITIC
+5.4 Custom Directives
+La création de custom directive se fait via la commande :
+ng g directive nom_de_la_directive
+51
+Il est nécessaire, comme pour les
+pipes, de déclarer la directive dans
+le module qui l’utilisera
+COGNITIC
+5.4 Custom Directives
+52
+Le décorateur @HostListener “écoute” ce
+qu’il se passe et réagit en fonction de l’
+évènement précisé entre ( )
+L’utilisation par injection de ElementRef permet
+d’accéder à l’élément “el” appelant la directive
+COGNITIC
+Exercice
+Sur base d’un modèle Link, mettre en place un menu de navigation réactif en fonction
+d’une liste de lien définie dans le TS de nav-component
+- Chaque module sera représenté dans le menu (Demo, Exercices) et sera l’occasion
+d’un sous-menu affichée/cachée sur un click
+6. @Input @Output
+54
+Discussion entre composants
+COGNITIC
+Table des matières
+55
+@Input @Output
+6.1 Faire discuter les composant
+6.2 @Input
+6.3 @Output
+COGNITIC
+6.1 Faire discuter les composants
+Nous avons précédemment vu qu’il est possible d’intégrer un composant à un
+autre grâce à l’appel par sélecteur.
+Il nous est, par conséquent, possible de créer un dialogue entre le composant
+appelant (parent) et le composant appelé (enfant) en nous servant
+principalement du sélecteur et des décorateurs @Input et @Output
+D’envoyer des informations du parent à l’enfant au travers de propriétés.
+ Et de faire réagir le parent en fonction de ce qu’il se passe dans l’enfant via des
+EventEmitter
+56
+COGNITIC
+6.2 @Input
+Grâce au décorateur @Input , l’enfant est en mesure de recevoir une information
+transmise par son parent.
+57
+Appel par sélecteur du côté parent en définissant
+une propriété à transmettre à l’enfant
+Récupération et utilisation de la propriété dans le
+composant enfant
+TS
+HTML
+Le décorateur @Input doit être importer de @angular/core
+COGNITIC
+6.3 @Output
+Le décorateur @Output permet de définir une réponse de l’enfant vers le parent au
+travers d’un EventEmitter que nous mettrons en place.
+58
+Mise en place de l’EventEmitter côté enfant. Son
+nom fera office de “type d’évènement” utilisable
+du côté parent
+Event Binding côté parent pour récupérer la
+réponse de l’enfant au travers de l’Event mis en
+place dans ce dernier
+Le décorateur @Output et EventEmitter doivent être importer de @angular/core
+COGNITIC
+6.4 NgContent
+Du contenu peut être défini dans le parent pour l’enfant. Et afficher dans l’enfant via le
+sélecteur <ng-content></ng-content>
+59
+COGNITIC
+Exercice
+Mettre en place une shopping list en deux composant.
+Dans le premier, un champ texte permettant l’ajout d’un article à la liste
+Dans le deuxième, l’affichage de la liste et la possibilité de supprimer un article.
+Les deux composant doivent être afficher sur la même page
+60
+COGNITIC
+7 Service et Injection
+61
+COGNITIC
+Table des matières
+62
+Les services
+7.1 Pourquoi et comment ?
+7.2 Injection de dépendances
+COGNITIC
+7.1 Les services pourquoi et comment
+63
+Les services permettent de regrouper des fonctionnalités liées entre elles (comme la
+consommation d’un end-point d’API) pour une meilleure maintenabilité.
+Ou encore des fonctionnalités partagées par toute l’application (ex : la gestion des rôles utilisateur
+ou des méthodes de calcul) => Grand potentiel de réutilisabilité
+Ils peuvent également fournir à un module ou un composant les outils nécessaires à leur
+fonctionnement
+En bref, ils constituent le coeur de la logique fonctionnelle de l’application.
+Et atout non négligeables, ils bénéficient de l’injection de dépendances native en Angular.
+COGNITIC
+7.1 Les services pourquoi et comment
+Créer un service : ng g s dossier/nom_du_service
+64
+Le décorateur @Injectable signifie que la classe est
+injectable en tant que service.
+Le paramètres ProvidedIn est spécifique à l’injection
+de dépendances.
+COGNITIC
+7.2 Injection de dépendances
+Il s’agit d’un design pattern laissant
+l’application décidé de la nouvelle
+instanciation d’une classe de service ou de
+l’utilisation de l’instance existante.
+Le framework Angular embarque l’injection
+de dépendance de manière native. Et nous
+permet de définir la portée de nos
+instances (module, composant,
+application). Il nous faudra dès lors définir
+deux choses : Le provider du service et ou
+injecter ce dernier.
+65
+Du provider dépend la portée et la durée de vie
+de l’instance du service. Une fois défini (voir
+slide suivant), nous utiliserons l’injection par
+constructeur pour injecter notre service
+COGNITIC
+7.2 Injection de dépendances
+66
+Provider Portée et durée de vie Mise en place
+Component L’instance n’est disponible que durant la vie du composant.
+(voir Cycle de vie) Et uniquement dans le composant (et ses
+enfants) Une nouvelle instance du service sera instanciée à
+chaque appel de constructeur du composant
+A définir dans le tableau providers de
+@Component
+Module
+eager-loaded
+(Singleton)
+Disponible pour toute l’application dès son lancement Le paramètre providedIn de @Injectable définit le
+provider du service ‘root’ ou ‘nom_du_module’
+Ou dans le tableau providers de @NgModule
+Module
+lazy-loaded
+(Singleton)
+Disponible à partir du moment ou le module est chargé. Peut
+causer des erreurs s’il est injecté avant que le module ne soit
+chargé
+Root Module
+(Singleton)
+Disponible pour toute l’application dès son lancement
+COGNITIC
+Exercice
+Optimiser la liste de course avec l’utilisation d’un service qui gère la liste et les
+méthodes qui peuvent s’y appliquer
+Ajouter la possibilité de gérer le nombre d’articles voulu (Ex : Lait x 6, Tomates x 3, …)
+67
+COGNITIC
+8 Formulaires
+68
+COGNITIC
+Table des matières
+69
+Les formulaires
+8.1 Les différents formulaires
+8.2 FormBuilder
+8.3 FormControl
+8.4 FormGroup
+8.5 FormArray
+8.6 Validators
+8.7 Validation de formulaire
+8.8 Récupération des données
+8.9 Custom Validator
+COGNITIC
+8.1 Les différents formulaires
+70
+La plupart des interactions utilisateur se font au travers de formulaires. Nous avons deux
+options à notre portée.
+- Template-driven Forms => Input lié à une propriété par Two-way binding.
+Rappel : Il faut importer FormsModule au niveau du module ou de l’app
+- Reactive Forms permettant de gérer des groupes de contrôle et de valider les champs
+de formulaires
+Il est nécessaire d’importer ReactiveFormsModule au niveau du module ou de l’app
+Nous allons privilégié les Reactive Forms
+COGNITIC
+8.2 Le FormBuilder
+La classe intégrée à Angular, FormBuilder, nous permet de déclarer facilement nos formulaires
+réactifs. Elle devra être injecté dans le constructeur. L’objet ainsi instancié s’occupera de gérer les
+“contrôle” de formulaire et d’y inclure des “Validator”
+71
+Sans oublier de l’importer de @angular/forms
+L’objet _formBuilder nous propose dès lors
+3 possibilités : array, control et group
+COGNITIC
+8.3 formControl
+Le contrôle est l’unité de base du formulaire, il représente un input présenté dans l’html
+72
+Le premier paramètre de
+construction permet de définir la
+valeur d’initialisation contenue dans
+l’input lié à notre contrôle.
+Le second représente le/les Validator(s)
+que nous voudrions appliquer au contrôle.
+=> voir plus loin dans le chapitre
+Nous préférons laisser le soin au FormBuilder, de gérer la création et l’instance de notre
+contrôle. Le laissant jouer son rôle de chef d’orchestre pour les Reactive Forms
+COGNITIC
+8.3 formControl
+Une fois notre contrôle défini côté TS, nous devrons le lié à un Input de formulaire par
+l’attribut formControlName
+73
+Remarque : Nous utiliserons très rarement un contrôle seul. Nous préférons utiliser
+l’option du Template-Driven Form le cas échéant
+COGNITIC
+8.4 formGroup
+Un FormGroup regroupe plusieurs
+FormControl, voir un formulaire complet
+pour aider à la validation globale de celui
+ci.
+74
+Déclarons une propriété contenant le
+FormGroup
+Ensuite, nous initialisons le groupe en laissant le
+FormBuilder se charger de tout.
+La méthode .group() permet d’instancier un tableau
+d’objet de type FormControl très simplement
+COGNITIC
+8.4 formGroup
+75
+La mise en place côté HTML d’un formGroup est très simple.
+- Lier le formGroup grâce à la directive [formGroup] du Formulaire (ce qui a
+pour effet de remplacer l’attribut “action=page.xxx” de <form> et de lier
+facilement les formControl au différents éléments).
+- Lier ensuite chaque Input au formControl qui lui est dédié
+COGNITIC
+8.5 formArray
+Permet de créer un tableau de contrôle. Dans le cas ou on ignore le nombre de contrôles à créer
+ou si de nouveaux contrôle doivent être ajouté en cours de route
+76
+Une fois déclaré, il est nécessaire de pouvoir y accéder :
+Le type FormArray représente une collection de
+FormControl. Et qui dit collection, dit push(), remove(), ….
+COGNITIC
+8.5 formArray
+Notre FormArray, désormais facilement accessible, peut être manipuler comme n’importe quelle collection
+77
+Ajout d’un contrôle :
+Affichage des contrôle :
+Remarque : Le nom de chaque contrôle correspond à son index dans la collection
+COGNITIC
+8.6 Validators principaux
+Ils vont permettre de vérifier que les valeurs entrées correspondent à ce qui est attendu.
+78
+Validators.min(X) Oblige une valeur numérique minimale X
+Validators.max(X) Limite à une valeur maximale X
+Validators.required Force une valeur non vide
+Validators.email Impose de respecter le format E-mail “x@x.x”
+Validators.minLength(X) Longueur minimale de X de la valeur (chaîne de caractère)
+Validators.maxLength(X) Longueur maximale de X de la valeur (chaîne de caractère)
+Validators.pattern(regex) Oblige à correspondre à une expression régulière
+COGNITIC
+8.7 Validation de formulaire
+Grâce à nos objets formGroup ou
+formContol, nous avons accès à une
+propriété valid qui retourne True/False
+en fonction des validations imposées
+par nos validators. Ce qui nous permet
+d’afficher ou non des messages d’erreur
+(*ngIf) ou de soumettre ou non le
+formulaire.
+79
+Afficher un message d’erreur
+Autoriser la validation du formulaire
+COGNITIC
+8.8 Soumission et récupération de données
+Une fois validé, nous soumettons le formulaires via un Event Binding
+(ngSubmit)=”method()”.
+Et nous récupérons les données grâce à la propriété “value” du FormGroup.
+80
+COGNITIC
+8.9 Custom Validator
+Angular nous donne la possibilité de définir nos propres Validators.
+81
+Il suffit de mettre en place une
+méthode qui retourne un objet de type
+ValidatorFn (fonction de validation)
+Il reste à appeler cette fonction de
+validation dans la liste des Validators de
+notre champ
+Remarque : La best-practice nous suggère d’externaliser ces Custom Validators dans un but de réutilisabilité
+9 Routing
+82
+COGNITIC
+Table des matières
+83
+Routing
+9.1 Routing Module
+9.2 Eager Vs Lazy Loading
+9.3 Router
+9.4 Activated Route
+9.5 Guard
+9.6 Resolver
+COGNITIC
+9.1 Routing module
+Rappel :
+Comme vu précédemment, chaque module peut inclure son propre routing. Bien que
+non nécessaire, il est conseillé d’adopter cette pratique pour chaque module
+regroupant plusieurs composants. (ex : Admin panel, DashBoard, User feature, …)
+Nous prendrons donc le parti mettre en place des “children” et nous retrouver avec un
+template de route similaire à : “monsite.com/module/composant”.
+Dans le cas d’un module d’import/export tel que le “SharedModule” mis en place.
+Aucun routing n’est nécessaire.
+84
+COGNITIC
+9.1 Routing module
+Les routes sont définies dans le tableau d’objet de type Routes. Pour qu’une route soit
+valide, l’objet attend au minimum une propriété “path” qui défini le chemin d’accès. La
+suite des paramètres dépend des besoins.
+Le décorateur @NgModule du routing est nécessaire pour importer RouterModule et en
+définir la portée.
+- forRoot(routes) => il s’agit du routing principal de l’application
+- forChild(routes) => tout sous-module de routing dépendant de son parent
+85
+COGNITIC
+9.1 Routing module
+Dans la propriété “path” des routes, il est possible de définir un chemin par défaut.
+path : ‘**’ => signifie que les chemins non définis précédemment seront prit en
+charge par cette route.
+Nous pouvons dès lors rediriger vers une autre route (redirectTo).
+path : ‘’ => représente le chemin vide, il est donc possible de rediriger vers l’endroit
+voulu en cas d’url http://monsite.com/ . Autrement dit, nous choisissons le point d’entrée
+86
+COGNITIC
+9.2 Eager VS Lazy Loading
+Chaque module (excepté le root) peut être défini, au sein du routing principal, comme
+charger au démarrage de l’application (Eager-loaded) ou charger à la demande
+(Lazy-loaded).
+Dans un soucis de performance, le lazy-loading est recommandé. En effet, si un
+module est inutile lors d’un traitement ou de la navigation d’un utilisateur
+(ex : Adminpanel). Il n’est pas nécessaire de surcharger le serveur.
+En cas de lazy loading. Il est important de bien gérer l’injection de dépendances et
+en particulier les providers de service. (Un service dont le provider n’est pas chargé,
+n’existe pas)
+87
+COGNITIC
+9.3 Router
+La classe Router permet de gérer les routes au sein d’un composant ou d’un service
+88
+Il est nécessaire d’injecter la classe Router dans le constructeur
+du composant ou service qui l’utilisera
+Nous pouvons envoyer l’utilisateur vers la route voulue, avec la possibilité
+d’ajouter des paramètres et les traiter dans le routing module
+COGNITIC
+9.4 ActivatedRoute
+La classe ActivatedRoute représente la route active (ou qui vient d’être emprunter lors
+de la navigation). Il est possible d’y récupérer des paramètres de route. Des objets
+chargé par Resolver ou simplement la connaissance d’où on vient.
+89
+Grâce au tableau params se trouvant dans la propriété
+snapshot. Nous récupérons facilement nos paramètres de
+route.
+Remarque : la propriété snapshot représente la route à l’instant T
+COGNITIC
+9.5 Guard
+Il nous est possible de définir si une route peut être activée ou pas. Peut-on accéder au
+composant/module voulu, ou pas ?
+- ng g guard nom_de_guard
+Implémenter CanActivate pour définir si la route peut répondre ou pas.
+- return True => route activée
+- return False => route inaccessible
+activate : GuardName (dans les paramètres d’une route pour activer la garde)
+90
+COGNITIC
+9.6 Resolver
+Le resolver permet de “résoudre un objet” durant la navigation.
+Exemple :
+- Chargement d’un objet venant d’un service
+- Résoudre un appel API
+Permet d’éviter les erreurs d’objet “undefined” lors d’appel asynchrone d’objet à envoyer au
+template visuel
+On peut dire qu’il s’agit d’un “time-stop” durant la navigation pour loader un objet avant d’arriver à
+destination
+91
+COGNITIC
+9.6 Resolver
+92
+1. Déclarer le service de résolution
+et son comportement
+2. Définir la propriété “resolve” de la
+route pour y exposer le service de resolver
+et spécifier un nom pour l’objet résolu
+3. Récupérer l’objet résolu grâce à
+ActivatedRoute, dans le composant cible
+COGNITIC
+Exercice
+Mettre en place un CRUD de fan de série.
+Chaque fan sera défini par son nom, sa date de naissance(interdit au moins de 13 ans), et la liste
+de leur séries préférées (juste le titre).
+Aucune limitation du nombre de séries définie par l’utilisateur à la création de son profil
+Sur la page de modification de profil, il doit être possible d’ajouter ou supprimer des séries.
+- 4 composants (liste des fans, détails, création, mise à jour)
+- Seule l’année est vérifiée pour l’âge des fans
+- Si un champ est visible, il sera obligatoirement rempli
+93
+COGNITIC
+10 Storage
+94
+COGNITIC
+Table des matières
+95
+Les storages
+10.1 LocalStorage vs SessionStorage
+10.2 Méthodes associées
+COGNITIC
+10.1 Différence entre les deux storages
+Le sessionStorage garde les infos voulues jusqu’à ce que le navigateur ou l’onglet soit
+fermé
+Le localStorage quand à lui est disponible jusqu’à ce que l’application vide le storage ou
+que l’utilisateur vide le cache de son navigateur.
+Pour les deux : stockage jusqu’à 10mo pour la plupart des navigateurs
+96
+COGNITIC
+10.2 Méthodes associées
+97
+Qu’il s’agisse du local ou du session storage, les commandes
+sont identiques. Seul le comportement global est différent
+Ajoute un valeur en session (de type string uniquement)
+Récupère la valeur stockée à la clé “key”
+Supprime une clé et la valeur associée de la session
+Vide complètement la session (clés et valeurs)
+COGNITIC
+11 Observable
+98
+COGNITIC
+Table des matières
+99
+Les observable
+11.1 La librairie RXJS
+11.2 Subject / BehaviorSubject
+11.3 Subscribe()
+11.4 Subscription
+11.5 Opérateur RXJS
+COGNITIC
+11.1 La librairie RXJS
+Faisant partie du bundle de base
+d’Angular, cette librairie contient tout le
+nécessaire pour gérer les Observable.
+Ceux-ci sont le fondement de la
+programmation dite réactive et
+permettent en gros, de ne plus avoir à
+charger manuellement une valeur si elle
+est observée
+100
+Au delà de ça, elle permet de gérer des
+comportements asynchrones (appel d’api
+par exemple) et amène des outils de gestion
+de collection observable
+Remarque : Ce chapitre ne couvre pas l’entièreté des possibilités de
+RXJS mais apporte l’essentiel pour la compréhension des observable
+https://www.learnrxjs.io/
+COGNITIC
+11.2 Subject et BehaviorSubject
+101
+Pour que plusieurs composants puissent se
+baser sur le même service et donc les mêmes
+valeurs. Il sera nécessaire d’utiliser la notion
+d’observable.
+Nous verrons dans le chapitre suivant que les
+appels api (HttpClient) retourne d’office un
+observable. Mais dans le cas de propriétés ou
+d’objets gérés par l’application elle-même, il
+faut mettre en place soi-même cette notion.
+C’est là qu’interviennent les Subject
+Autre avantage non négligeables, nous accédons à la notion
+d’abstraction (plus d’accès direct à une propriétés) et pouvons dès lors
+utiliser l’encapsulation de manière efficace.
+COGNITIC
+11.2 Subject et BehaviorSubject
+102
+Les types Subject et BehaviorSubject permettent de d’
+émettre la valeur d’une propriétés aux différents
+composant abonné à ce subject.
+La différence fondamentale entre les deux types est
+que le BehaviorSubject émet sa valeur par défaut lors
+de sa construction. Contrairement au Subject.
+Pour les deux, à chaque nouvelle modification, il faudra
+émettre la valeur.
+Le BehaviorSubject à également la particularité de
+garder sa dernière valeur émise en mémoire. Elle est
+accessible via la méthode GetValue()
+La méthode next de mySubject , qu’il soit Subject
+où BehaviorSubject, enverra la valeur de property à
+tous les abonnés (voir slide suivant)
+COGNITIC
+11.3 Subscribe
+103
+Pour suivre l’évolution d’un
+observable, il sera nécessaire de
+s’y abonner via la méthode
+subscribe() disponible pour
+n’importe quel type observable
+La méthode subscribe() attend jusqu’à trois lambas,
+1) le paramètre d’entrée représente la valeur émise par
+l’observable. Et dont l’expression représente le traitement
+exécuté à chaque nouvelle émission de l’observable
+2) le paramètre d’entrée représente l’éventuel erreur
+retournée par l’observable et l’expression, le traitement à
+faire en cas d’erreur.
+3) Représente l’action à effectuer qu’il y ai des erreurs ou pas
+Nous pouvons comparer ça à un bloc “try catch finally”
+COGNITIC
+11.4 Subscription
+104
+L’objet Subscription permet de stocker le statut de
+la méthode subscribe() . Ce qui veut dire qu’il est
+possible d’agir sur cette souscription pour s’en
+désabonner par exemple.
+COGNITIC
+11.5 Opérateurs RXJS
+105
+Nous sommes capable de nous abonnés à des
+observables. Il temps d’apprendre à s’en servir.
+Il est possible d’appliquer différents opérateurs à
+l’observable avant de déclarer la souscription.
+Au travers de la méthode .pipe()
+Ce cours ne couvre pas la liste des opérateurs.
+La liste exhaustive se trouve ici :
+https://www.learnrxjs.io/learn-rxjs/operators
+COGNITIC
+12 HttpClient
+106
+COGNITIC
+Table des matières
+107
+HttpClient
+12.1 Discussion API <-> Angular
+12.2 HttpVerbs de base
+12.3 Interceptor
+COGNITIC
+12.1 Api <> Angular
+108
+La discussion entre API et Angular passe par la le module HttpClient ( => importer HttpClientModule)
+API
+- Database
+- Controller
+- Models
+- …
+Angular
+- Services
+- Components
+- Models
+- HttpClient
+HttpRequest
+HttpResponse
+Header, HttpVerb,
+Content,...
+Header, Status code,
+ResponseMessage
+Remarque : Chaque action Http retourne un objet de type Observable<T>
+COGNITIC
+12.2 Http Verbs
+109
+Verbe Utilité Exemple Angular
+Get Récupération de données
+Post Envoi de données (possibilité
+d’en recevoir en retour)
+Put Modification de données
+Delete Suppression de donnée
+Un paramètre optionnel supplémentaire permet de donner des
+infos de header (comme “Authorization”, “Content-Type”, …)
+Attention:
+S’il y a objet en
+httpResponse, il est
+nécessaire de typer
+la méthode en
+ajoutant le type
+entre chevron
+(ex : get<T>)
+COGNITIC
+12.3 Interceptor
+110
+L’objet interceptor va, comme son nom l’indique,
+intercepter les requêtes Http et les retourner
+“modifiées”. Pour, par exemple y inclure des
+informations de Header.
+Le paramètre req correspond à la requête interceptée, quant au
+paramètre next, il fait référence à la requête une fois modifiée
+COGNITIC
+12.3 Interceptor (suite)
+111
+Il faudra ensuite préciser au niveau des providers du module la
+classe d’intercepteur à utiliser.
+provide : précise ce qui doit être gérer (ici l’interception HTTP).
+useClass : l’instance de classe à utiliser
+multi : (true/false par défaut). Définit s’il est possible d’avoir
+plusieurs instances de la classe en même temps
+COGNITIC
+13 Publication
+112
+COGNITIC
+13 Build de l’application
+113
+Il est très facile de build son application pour
+déployer sur n’importe quel serveur pouvant
+héberger de l’html.
+Il suffit de tapper la commande
+ng build
+Et d’y ajouter l’option --prod pour minifier le code.
+Le build est alors déposer dans un répertoire /dist.
+Copiez en le contenu sur votre hébergeur et le tour
+est joué.
+Attention : Si vous ne déposez pas le projet à la
+racine de votre serveur, il faudra spécifier le
+chemin d’accès dans le fichier index.html à la
+ligne en remplaçant le / par la route nécessaire
+COGNITIC
+Merci pour votre attention!"></div></textarea
+>
 <br />
 &nbsp;&nbsp;&nbsp;📁
 <button
@@ -69,6 +1199,281 @@
 <a href="assets/pdf/Python%20-%20Base%20(Bstorm).pdf" style="display: inline"
   >Algo</a
 >&nbsp;📁
+<!-- Add textarea for the PDF visualization -->
+<textarea
+  style="
+    display: block;
+    inline-size: 97%;
+    block-size: 50px;
+    margin: 10px;
+    font-size: 16px;
+  "
+>
+Table des matières ● Variable ● Interaction avec la console ● Opérateur ○ Arithmétique ○ Comparaison ○ Logique ● Structure conditionnel ○ If ● Structure itérative ○ while ○ for
+● Collection ○ Tuple ○ List ○ Dictionaries ○ Set ● Les méthodes ● Gestion des erreurs
+2
+Brainstorm Consulting
+Les variables
+3
+Brainstorm Consulting
+Qu’est ce que c’est ?
+Une variable permet de stocker une information en mémoire, celle-ci se compose :
+● Un nom
+● Un type
+● Une valeur
+● Une référence mémoire
+Le concept de variable constante n’existe pas en python.
+4
+Brainstorm Consulting
+Le nom d’une variable
+En python, la convention de nommage pour les variables est le « snake_case »
+● Peut être composé de lettre, chiffre et underscore
+● Commence toujours par une lettre
+● En minuscule
+● Les caractères spéciaux sont interdits (lettres accentuées, $, #, ... )
+5
+Brainstorm Consulting
+Les mots réservés
+Attention, il y a des mots-clefs que vous ne pouvez pas utiliser!
+Voici la liste des 33 mots réservés en python :
+6
+Brainstorm Consulting
+Le type d’une variable
+Le python est un langage à typage dynamique.
+● Le type adapté est automatiquement utilisé lors de l’affectation de la variable.
+● Il est conseillé de ne pas changer le type de variable en cours de programme !
+La fonction « type(...) » permet de récupérer le type de la variable
+7
+Brainstorm Consulting
+Les types de base
+● Numérique
+○ int : Valeur entière
+○ float : Valeur approximative d’un nombre réel
+● Texte
+○ str : Chaîne de caractères
+○ unicode : Chaîne de caractères encodés en Unicode
+Une valeur de type texte doit être en simple ou double quote.
+Pour du texte multiligne sans caractère d'échappement, il faut tripler les quotes.
+8
+Brainstorm Consulting
+Les types de base
+● Booléen
+○ bool : Valeur « True » ou « False » (Attention, en python, il faut une Majuscule !)
+● Autres types
+○ vide : Valeur « None » (Équivalent au « null » de C#, Java, ...)
+○ type : Type basique, renvoyé à l’aide de la méthode type(...)
+○ object : Objet basique
+○ function : Fonction
+Liste complète des différents types :
+https://fr.wikiversity.org/wiki/Python/Les_types_de_base
+9
+Brainstorm Consulting
+Affectation
+Contrairement au langage classique… il n’est pas nécessaire de déclarer les variables.
+L’affectation des variables se réalise avec l'opérateur « = ».
+Python autorise également l’affectation multiple
+10
+Brainstorm Consulting
+Conversion
+Il existe des méthodes permettant de convertir une variable vers un type donné
+● int(...) : Conversion vers un entier de type “int”
+● float(...) : Conversion vers un nombre à virgule
+● str(...) : Transformation vers du texte
+● unicode(...) : Transformation vers du texte encodé en Unicode
+11
+Brainstorm Consulting
+Interaction avec la console
+12
+Brainstorm Consulting
+Ecrire dans la console
+La fonction a utiliser pour afficher du texte dans la console est « print(...) »
+Lors qu’il y a plusieurs valeurs, un séparateur (espace par défaut) est ajouté.
+En fin de ligne, un saut de ligne est ajouté.
+13
+Brainstorm Consulting
+Lire dans la console
+Pour interagir avec l’utilisateur, il est possible de lire la saisie de la console.
+Pour cela, il faut utiliser la méthode « input(“message”) », qui va permet de récupérer la
+valeur entrée par l'utilisateur en format texte.
+Attention, la valeur récupérée sera toujours du type texte,
+une conversion est nécessaire pour la transformer en entier, réel,...
+14
+Brainstorm Consulting
+Les opérateurs
+15
+Brainstorm Consulting
+Arithmétique
+Les opérateurs arithmétiques sont :
++ Addition
+- Soustraction
+* Multiplication
+/ Division réel
+// Division entière
+% Modulo (Reste de la division entière)
+16
+Brainstorm Consulting
+Comparaison
+Les opérateurs de comparaison sont :
+== Egalité strict != Différence
+< Strictement supérieur <= Supérieur ou égal
+> Strictement inférieur >= Inférieur ou égal
+in Test d'adhésion : Si “a” est contenu dans “b”.
+is Test d’identité : Si “a” et “b” contiennent sur le même contenu.
+17
+Brainstorm Consulting
+Logique
+Les opérateurs logiques sont :
+and Vrai, si les 2 valeurs sont vraies.
+or Vrai, si au moins une des 2 valeurs est vraie.
+not L’inverse de la valeur.
+18
+Brainstorm Consulting
+Affectation et opération
+Il existe une écriture raccourcie qui permet de réaliser une opération arithmétique
+combinée avec une affection
+a += b → a = a + b
+a -= b → a = a - b
+a *= b → a = a * b
+...
+19
+Brainstorm Consulting
+La structure conditionnelle
+20
+Brainstorm Consulting
+Le « if, elif, else »
+La structure « if » permet d'exécuter des opérations en fonction de condition.
+● if Condition à tester (obligatoire)
+● elif Condition si la précédente est fausse (optionnel et répétable)
+● else Traitement si aucune condition validée (optionnel)
+21
+Brainstorm Consulting
+Les structures itératives
+22
+Brainstorm Consulting
+La structure « while »
+La boucle « while » permet de répéter un ensemble d’opérations tant que la condition
+vérifiée est vraie.
+Attention, vous devez toujours maîtriser la condition de la boucle!
+23
+Brainstorm Consulting
+Les différentes structures « for »
+Les structures « for » sont les boucles permettant de parcourir les collections.
+En python, il en existe 3 cas différents :
+● Utiliser directement avec une collection
+● A l’aide de la méthode « enumerate(...) »
+● A l’aide de la méthode « range(...) »
+Les différentes collections du python seront abordées par la suite
+24
+Brainstorm Consulting
+Les boucles « for »
+● Avec une collection
+● Méthode « enumerate(collection) »
+25
+Brainstorm Consulting
+Les boucles « for » ● Méthode « range(start, stop, step) »
+Elle est utilisable de 3 manières
+différentes : ➔ Avec tous les paramètres ➔ Avec le “start” et le “stop”
+Le “step” par défaut est 1
+➔ Avec uniquement le “stop”
+Le “start” par défaut est 0
+26
+Brainstorm Consulting
+Les collections
+27
+Brainstorm Consulting
+Les différentes collections du python
+Les collections permettent de regrouper dans une seule variable un ensemble
+d’informations.
+En python, il en existe plusieurs :
+28
+Nom Indexé Ordonnée Modifiable Membre dupliqué
+List Oui Oui Oui Oui
+Tuple Oui Oui Non Oui
+Set Non Non Oui Non
+Dictionaries Oui Non Oui Non
+Brainstorm Consulting
+La collection « list »
+En python, une liste s'écrit entre crochet “[ ]”
+29
+Brainstorm Consulting
+La collection « list »
+30
+Brainstorm Consulting
+Récupérer un range
+31
+Le langage python permet de récupérer un ensemble d’élément au sein d’une liste.
+Brainstorm Consulting
+La collection « tuple »
+En python, un tuple s'écrit entre parenthèse “( )”
+32
+Brainstorm Consulting
+La collection « set »
+En python, un set s'écrit entre accolade “{ }”
+33
+Brainstorm Consulting
+La collection « set »
+34
+Brainstorm Consulting
+La collection « Dictionaries »
+En python, un dictionnaire s'écrit entre accolade avec des combinaisons “clef/valeur”.
+35
+Brainstorm Consulting
+La collection « Dictionaries »
+36
+Brainstorm Consulting
+Les méthodes
+37
+Brainstorm Consulting
+Définition d’une méthode
+38
+L'utilisation des méthodes permet d'éviter la répétition de codes.
+Pour déclarer une méthode, il faut utiliser le mot clef « def ».
+Il en existe 2 types :
+● Procédure → Ne retourne aucune valeur
+● Fonction → Retourne une valeur
+La convention de nommage pour les méthodes est également le « snake_case »
+Brainstorm Consulting
+Exemple d’une procédure
+39
+Brainstorm Consulting
+Exemple d’une fonction
+40
+Brainstorm Consulting
+Les paramètres
+Les valeurs reçues en paramètres sont copiées dans des variables locales à la méthode.
+41
+Brainstorm Consulting
+Variable locale VS globale
+Les variables créées au sein d’une
+méthode n’existe que dans celle-ci.
+En python, il est possible d’utiliser le mot
+clef « global » pour créer ou utiliser une
+variable en dehors de la zone mémoire
+de la méthode.
+ Attention, ceci n'est pas conseillé !
+42
+Brainstorm Consulting
+Gestion des erreurs
+43
+Brainstorm Consulting
+Try... Except
+La gestion des erreurs permet d’intercepter les exceptions pour les traiter.
+En python, il y a quatre types de blocs prévu pour cela : try, except, else et finally.
+44
+Brainstorm Consulting
+Multiples « Except »
+Le bloc « Except » est spécialisable pour
+gérer uniquement un type d’erreur.
+Il est possible de gérer plusieurs types
+d’erreurs, à l’aide de multiples except.
+Dans ce cas, l’exception va passer de
+except en except, à la recherche du
+premier bloc compatible avec
+l’exception.
+45
+Brainstorm Consulting
+Merci pour votre attention.</textarea
+>
 <br />
 &nbsp;&nbsp;&nbsp;📁
 <button
@@ -104,6 +1509,617 @@
 <a href="assets\pdf\T-SQL - Procédural.pdf" style="display: inline"
   >SQL procédural</a
 >&nbsp;📁
+<!-- Add textarea for the PDF visualization -->
+<textarea
+  style="
+    display: block;
+    inline-size: 97%;
+    block-size: 50px;
+    margin: 10px;
+    font-size: 16px;
+  "
+>
+Introduction
+Pourquoi le T-SQL
+Finalité : le trigger
+Caractéristiques du langages
+L’environnement de développement
+Réponses du serveur
+• Faire des requêtes, c’est bien, les automatiser, c’est mieux !
+> Procédures
+> Fonctions
+> Triggers
+> …
+• Langage directement utilisable dans les bases de données, sans
+utilisation de langages externes
+• Souvent dénigré, car méconnu, mais peut réellement alléger les
+codes externes appelant les BD, optimisant grandement le traitement
+T-SQL - Introduction CogniTIC 4
+T-SQL - Introduction CogniTIC 5
+• Langage construits par « blocs ». La structure « BEGIN … END »
+viendra délimiter les instructions telles que « IF », « While »,
+« GOTO » et « WAITFOR »
+T-SQL - Introduction CogniTIC 6
+T-SQL - Introduction CogniTIC 7
+• Les points-virgules et autres annotations habituelles de
+programmation ne sont pas obligatoires, mais ne créent pas d’erreur
+et permette de délimiter tout de même les instructions
+• Donner une en-tête à un ensemble d’instructions permet de créer
+des objets stockés dans la base de données (procédures, fonctions,
+triggers)
+• En T-SQL, un script est considéré comme une procédure anonyme à
+part entière. Il n’est donc pas nécessaire d’être dans un bloc
+procédural pour déclarer des variables, exécuter des boucles, etc.
+• La commande GO permet de forcer
+immédiatement l’exécution de certaines
+instruction dont l’exécution est lancée par lots
+(comme c’est le cas dans les procédures,
+fonctions et triggers, hors manipulations de
+transactions)
+Sans le GO, le serveur est normalement autorisé
+à exécuter les ordres qui lui sont proposés
+d’exécuter simultanément dans l’ordre qu’il le
+désire
+• Le symbole # précède toute table temporaire que l’on voudrait utiliser
+T-SQL - Introduction CogniTIC 8
+• La commande « EXEC » permet d’exécuter une commande
+particulière complexe, construite à partir d’un ensemble d’ordre
+préalables et stockés dans une variable
+• L’instruction « SET » permet de donner une valeur aux variables
+ainsi que de paramétrer certaines options de la base de données
+T-SQL - Introduction CogniTIC 9
+• SQL Server
+Management Studio
+(client Microsoft pour
+son SQL Server) • ATTENTION à
+toujours se positionner
+sur la bonne base de
+données ! • Utilisation du bouton
+« REFRESH » pour
+faire apparaître les
+objets créés • Les scripts ne sont
+connus du serveur que
+lors de leur lecture, ils
+ne sont pas stockés en
+tant qu’objets !
+T-SQL - Introduction CogniTIC 10
+• Lorsqu’une requête est envoyée vers le serveur via l’interface d’
+édition des requêtes (New Query), le serveur nous informe du
+résultat de cette requête, au bas de la page. Un texte en rouge nous
+indique une erreur. Double-cliquer sur le texte de l’erreur pour
+surligner immédiatement l’endroit où elle a été rencontrée dans le
+code.
+T-SQL - Introduction CogniTIC 11
+• Il est possible de demander l’affiche d’un texte par le serveur via l’instruction
+« PRINT »
+• Une autre manière de faire peut consister également à sélectionner ce que
+l’on désire afficher à partir d’une table temporaire. Cependant, ces tables ne
+sont utilisables qu’une seule fois, il est donc nécessaire et recommandé, pour
+des questions de performance, de les supprimer rapidement. Il est à noter
+qu’un changement d’utilisateur ou de session supprime ces tables.
+T-SQL - Introduction CogniTIC 12
+Définition
+Nature des variables
+Déclaration des variables
+Nom des variables
+Type des variables
+Affecter une valeur
+CONVERT et concaténation
+Le type TABLE
+Toute donnée ou groupe de données que l’on désire référencer une ou
+plusieurs fois dans le code d’un programme est le plus souvent stocké
+dans une « enveloppe » nommée qui permet de l’appeler (de l’utiliser)
+plus facilement
+Cette donnée stockée et nommée est appelé variable
+Une variable possède une nature, un nom, un type et a une ou plusieurs
+valeurs, même s’il s’agit de la valeur NULL
+• Remarquons bien que l’absence de valeur n’existe pas, cette
+absence à l’affichage cache toujours au moins la valeur « NULL » qui
+n’est pas équivalent à 0, qui est une donnée numérique réelle
+• Attention à toujours donnée un nom concis et clair à vos objets ou
+vos variables, cela rendra le code plus facile à comprendre et plus
+précis !
+T-SQL – Les variables CogniTIC 14
+• Variables SCALAIRES
+>> Une variable est dite de nature scalaire si elle ne peut
+contenir qu’une et une seule VALEUR (un chiffre, une chaine de
+caractères, etc.)
+• Variables COMPOSITES
+ >> Une variable est dite composite si elle contient plusieurs
+valeurs différentes qu’elles soient du même type ou non.
+En T-SQL, il s’agira le plus souvent d’une table temporaire
+• Variables CONTENEUR ou CURSEUR
+>> Les curseurs sont des mécanismes de mémoire tampons
+permettant d'accéder aux données renvoyées par une requête et de
+parcourir les lignes du résultat une par une
+• A noter que le T-SQL n’aborde pas la notion de variable scalaire
+CONSTANTE
+T-SQL – Les variables CogniTIC 15
+• Pour pouvoir être utilisée, une variable doit être déclarée, il faut
+signaler au système que l’on crée un conteneur de ce nom que nous
+pourrons utiliser
+• La variable crée n’existe qu’au moment où elle est déclarée et
+utilisée. Faire tourner un nouveau script ne permet pas d’utiliser les
+variables précédemment déclarées
+• Toute déclaration de variable commence par l’instruction
+« DECLARE ». Notez cependant qu’une seule instruction
+« DECLARE » peut déclarer d’un coups plusieurs variables séparées
+par des virgules
+• Tout nom de variable utilisateur commencera toujours par le
+symbole « @ »
+T-SQL – Les variables CogniTIC 16
+• Le nom que vous choisissez pour vos variables est libre tant qu’il
+respecte les quelques règles suivantes :
+>> Maximum 128 caractères
+>> Ils doivent commencer par une lettre ou un
+« underscore »
+>> Les caractères spéciaux, les accents et les espaces
+blancs ne sont pas admis
+• Les noms que vous choisissez sont insensibles à la casse, comme la
+plupart des mots utilisés en T-SQL, d’ailleurs
+• Comme énoncé précédemment, il est important de garder en
+mémoire que les noms les plus concis et clair sont les plus utiles !
+T-SQL – Les variables CogniTIC 17
+• Toute variable doit avoir un type
+• Les types utilisés sont :
+>> bit, int, smallint, tinyint, decimal, numeric, money, smallmoney,
+float, real, datetime, smalldatetime, timestamp, uniqueidentifier, char,
+varchar, text, nchar, nvarchar, ntext, binary, varbinary, image
+• Parmi les plus importants mis en gras ci-dessus :
+INT(eger) - définit un chiffre entier
+DECIMAL(x,y) - définit un chiffre décimal contenant
+maximum x valeurs dont y après la virgule
+DATETIME – une date au format
+AAAA-MM-JJ HH:MM:SS.CCC
+VARCHAR(X) – une chaine de caractères contenant X
+caractères maximum
+T-SQL – Les variables CogniTIC 18
+• Une fois la variable déclarée, il faudra utiliser la commande
+« SET » pour lui affecter une valeur. Utilisez l’opérateur « = » pour
+associer la variable à la sa nouvelle valeur
+• Par défaut, la valeur d’une variable est « NULL »
+• Il est possible d’affecter la valeur « NULL » à une variable
+• Les chaines de caractères apparaissent entre simples guillemets
+T-SQL – Les variables CogniTIC 19
+• Une autre façon d’associer une valeur à une variable est d’utiliser
+l’opérateur « SELECT @variable = colonne_table FROM … »
+Cela permet d’affecter à la variable une valeur issue d’une colonne
+d’une table donnée
+Les insertions multiples avec le même SELECT sont possibles
+• La clause « WHERE » n’est pas obligatoire, cependant la requête
+ne peut renvoyer qu’une seule ligne de la table, les variables étant de
+nature scalaire
+• Il est bien entendu indispensable que la variable soit du même type
+que la valeur que l’on désire lui associer
+T-SQL – Les variables CogniTIC 20
+T-SQL – Les variables CogniTIC 21
+• Le CONVERT implicite
+>> Si la valeur que l’on désire affecter à une variable n’est
+pas du même type que cette variable, SQL Server essayera de
+modifier le type de cette valeur pour l’adapter à celui de la variable.
+On dit alors qu’il y a conversion implicite de la valeur
+• Si la conversion implicite n’est pas possible, le système renverra
+une erreur. Si nous savons que cela est toutefois possible, ou afin d’
+être sûr que le système ne plantera pas, il est possible (et toujours
+conseillé) d’effectuer nous-même la conversion de valeur grâce à la
+fonction CONVERT
+T-SQL – Les variables CogniTIC 22
+• La concaténation en T-SQL se fait avec l’opérateur « + »
+Cela peut prêter à confusion puisque cet opérateur est également
+celui de l’addition. Comme SQL Server privilégiera l’addition dès qu’il
+rencontre un nombre, il faudra chaque fois convertir tous les termes
+d’une concaténation qui ne sont pas des chaines de caractères
+• Il est également possible en T-SQL, de récupérer un ensemble de
+données, issues de l’une ou plusieurs colonnes d’une ou plusieurs
+tables de la base de données. Ce procédé sera également utile pour
+récolter des ensembles de données dans nos programmes
+• Ces variables de type « TABLE » fonctionnent comme les tables
+temporaires dont le nom est précédé d’un « # » (voir
+précédemment), cependant, elles ont plusieurs avantages :
+>> Elles sont automatiquement effacées après utilisation
+>> Elles requièrent moins de traitement et d’espace mémoire que les
+tables temporaires
+>> Elles sont le seul moyen d’utiliser des ordres DML sur des données
+temporaires dans les fonctions, procédures et triggers
+T-SQL – Les variables CogniTIC 23
+• Exemple d’utilisation d’une variable TABLE temporaire
+T-SQL – Les variables CogniTIC 24
+Fonctionnement
+L’instruction IF
+L’instruction CASE
+L’expression CASE
+T-SQL – Conditionnelles CogniTIC 26
+• Les instructions de contrôle conditionnelles et séquentielles vous
+permettent de poser des conditions dans votre code et du lui
+imposer de n’exécuter certaines partie que dans des cas bien
+précis. Il s’agit le plus souvent de réagir en fonction du contenu
+d’une variable ou du résultat d’une expression
+• Les outils dont vous disposerez sont les instructions « IF » et
+« CASE »
+• La condition d’un IF ou d’un CASE peut être une variable
+booléenne, une constante ou encore une expression qui
+renvoie l’une des valeurs TRUE, FALSE ou NULL
+• Les instructions exécutées lorsque la condition renvoi la valeur
+TRUE peuvent être aussi multiples que diverses. Il est
+également possible d’avoir autant d’instructions qu’on le
+désire avant de fermer une conditionnelle ou de passer à la
+condition suivante
+CogniTIC 27
+• Contrairement à certains langages, la condition du IF en T-SQL
+n’est pas obligatoirement mise entre parenthèses.
+• Il est cependant conseillé, surtout si la condition est composée
+l’une combinaison de plusieurs conditions, de délimiter chaque
+condition par des parenthèses
+• Les instructions exécutées SI la condition est vraie (TRUE) sont
+placées entre les balises « BEGIN … END » et peuvent être aussi
+multiples qu’on le désire
+• Il n’y a pas de clause « THEN » en T-SQL !
+T-SQL – Conditionnelles
+• Si la condition est fausse (FALSE) au nulle (NULL), les instructions
+du IF sont ignorées. Il est alors possible de passer à la clause
+« ELSE », qui signifie « sinon, par défaut … ». La clause « ELSE »
+n’est pas du tout obligatoire
+T-SQL – Conditionnelles CogniTIC 28
+• Fort semblable au IF, l’instruction CASE permet de sélectionner
+une séquence d’instructions à exécuter parmi plusieurs séquences
+proposées. Le moteur passe en revue les expressions proposées
+une à une et exécute les instructions pour lesquelles la valeur
+de l’expression est validée
+• On distinguera deux types de CASE : le simple et le
+recherché. Le premier ne prévoit qu’une égalité strictes entre les
+valeurs comparées alors que le second permettra des inégalités
+mais sera plus long à écrire
+T-SQL – Conditionnelles CogniTIC 29
+• Tout comme dans le cas du IF, le CASE (simple ou recherché) peut
+également contenir un ESLE qui ne sera exécuté que si aucune
+des possibilité du CASE n’est abordée. Même si le ELSE n’est pas
+obligatoire, il est toujours conseillé de le spécifier
+• Un CASE recherché évalue
+une liste d’expressions
+booléennes et, lorsqu’elle
+trouve une expression qui
+renvoie TRUE, exécute la
+séquences d’instructions
+associée à cette expression
+T-SQL – Conditionnelles CogniTIC 30
+• L’instruction CASE simple évalue une
+expression et en fonction de son
+résultat, exécute la liste d’instructions
+associée
+• Le problème avec les instructions case est qu’elles sont obligatoirement
+utilisées dans un SELECT et que de ce fait, elles ne nous renvoient aucune
+information à moins de stocker le résultat de la requête dans une variable
+de type TABLE ou encore dans une table temporaire
+• L’expression CASE va nous permettre de renvoyer l’information dans une
+variable donnée
+T-SQL – Conditionnelles CogniTIC 31
+Utilisation des boucles
+Définition du curseur
+Manipulation des curseurs
+Exemple de boucle avec curseur
+T-SQL – Boucles et curseurs CogniTIC 33
+• Les boucles sont utiles lorsque vous désirez répéter une
+instruction un certain nombre de fois, que vous connaissiez ce
+nombre ou pas
+• Les boucles peuvent être décomposées en 2 parties distinctes :
+>> Les bornes de la boucle
+Composées de mots réservés qui démarrent et clôturent la
+boucle ainsi que d’une condition de sortie
+>> Le corps de la boucle
+Il s’agit de la séquence d’ordres exécutables compris dans
+les bornes de la boucle et exécutés à chaque itération
+• En T-SQL, seule les boucles « WHILE » seront utilisées
+T-SQL – Boucles et curseurs CogniTIC 34
+• Comme expliqué précédemment, les instructions
+que l’on désire répéter en boucle à l’intérieur du
+« WHILE » sont indiquées entre les bornes « BEGIN
+… END »
+• Une boucle while s’exécute TANT QUE la
+condition de départ est vraie. Si celle-ci n’est
+pas vrai au départ de la boucle, son contenu
+ne s’exécute même pas une fois
+Il est donc nécessaire de donner une valeur
+de départ à la condition de la boucle et
+s’assurer que la condition devienne fausse au
+bout d’un temps
+* Les commandes « BREAK » et
+« CONTINUE » permettent de mettre fin à
+une boucle directement ou de continuer le
+traitement normalement. Souvent utilisé
+avec un IF, bien entendu
+Les curseurs sont des mécanismes de mémoire tampons
+permettant d'accéder aux données renvoyées par une requête,
+elle-même pouvant être une jointure de deux ou plusieurs tables,
+présentant éventuellement plusieurs colonnes
+Le gros avantage des curseurs est de permettre de parcourir
+l’ensemble des lignes qu’il contient, une part une
+• Un curseur doit être déclaré au même titre qu’une variable. Lorsqu’il
+est déclarer, il ne constitue qu’une référence qui aidera à le générer
+lorsqu’il sera « ouvert » pour la première fois, moment auquel le
+système réserve alors de l’espace mémoire pour le curseur
+• Une fois l’utilisation du curseur terminée, il sera nécessaire de le
+« fermer » ET de « libérer » l’espace mémoire qu’il occupait
+T-SQL – Boucles et curseurs CogniTIC 35
+• Pour utiliser un curseur préalablement déclarer, il faudra utiliser la
+commande « OPEN nom_curseur »
+• Pour extraire une ligne du curseur dans les variables appropriées,
+nous utiliserons la commande
+« FETCH nom_curseur INTO @varCol1, @varCol2, @varCol3, … »
+A chaque fois que cette commande est utilisée, elle renvoi les
+données de la ligne suivante du curseur
+• Pour mettre fin à l’utilisation du curseur, il faudra le fermer en
+utilisant la commande « CLOSE nom_curseur »
+• Fermer un curseur ne libère pas l’espace mémoire qu’il utilisait, au
+cas où il serait ouvert à nouveau et donc, recréé.
+La commande « DEALLOCATE nom_curseur» permettra de
+supprimer l’espace mémoire que le curseur utilisait
+T-SQL – Boucles et curseurs CogniTIC 36
+• Par défaut, le curseur prendra toujours la ligne SUIVANTE qu’il
+contient. Il est possible mais non recommander de remonter d’une
+ligne dans le curseur, pour des raisons de performance
+• Lorsqu’un « FETCH » réussi à récupérer une ligne (c’est-à-dire qu’il
+n’est pas arrivé à la fin du curseur) alors la variable globale
+« @@FETCH_STATUS » vaut « VRAI »
+• La variable « @@FETCH_STATUS » est bien utile afin de sortir
+automatiquement d’une boucle « WHILE ». Cependant, il faudra
+penser à faire un « FETCH » avant l’ouverture de la boucle, pour que
+la variable « @@FETCH_STATUS » soit « VRAI » au départ.
+T-SQL – Boucles et curseurs CogniTIC 37
+T-SQL – Boucles et curseurs CogniTIC 38
+Les UDF
+Syntaxe
+Exemples
+Les procédures
+Syntaxe et exemple de procédure
+Paramètres
+Le paramètre OUT(PUT)
+Paramètres de type TABLE
+• Une fonction est un ensemble d’instructions qui remplissent une
+tâche particulière et surtout, renvoient une valeur !
+• La valeur renvoyée par la fonction implique que cette fonction
+ne peut pas être utilisée seule ou exécutée directement, elle
+doit faire partie d’une autre instruction T-SQL
+• Il existe deux grands types de fonctions : celles renvoyant
+une valeur et celles renvoyant un ensemble de données (une
+table donc)
+T-SQL – Fonctions et procédures CogniTIC 40
+Une UDF, autrement dit « User Define Function » ou Fonction
+Définie par l'Utilisateur est un ensemble de commandes regroupées
+sous un même nom d’objet, que l’on défini pour des besoins de
+traitements récurrents au sein des requêtes et du code des
+procédures stockées ou des triggers. Elle fait donc partie intégrante
+de la base de données, où elle est considérée comme un objet à
+part entière, au même titre qu'une table, une vue, un utilisateur ou
+une procédure stockée.
+CogniTIC 41
+• La syntaxe d’une fonction est la suivante. Il est à noter le type d’élément
+renvoyé et le mot-clé « RETURN », obligatoires, dans le code de la fonction
+• Le « type_résultant » est donc un type classique, le mot-clé TABLE ou
+encore, une variable de type TABLE que l’on défini à cet endroit
+• Il n’est pas possible, au sein du code d’une fonction, d’exécuter un ordre
+DML de manipulation des tables. Cela devra se simuler via une procédure qui
+jouera sur des paramètres passés en mode OUTPUT
+T-SQL – Fonctions et procédures
+T-SQL – Fonctions et procédures CogniTIC 42
+• Une procédure ne renvoyant aucune valeur peut donc être
+appelée comme une commande dans le code. Elle peut être
+exécutée seule, sans interagir avec d’autres éléments du code
+• En créant des paramètre dits « de sortie » il est possible de
+simuler en quelques sortes un retour de valeur pour une
+procédure également
+CogniTIC 43
+Une procédure est également un objet de la base de données,
+regroupant un ensemble de commandes qui effectuent une tâche
+particulière le plus souvent, récurrente.
+La différence fondamentale entre les procédures et les fonctions
+est qu’une procédure ne renvoi aucune valeur (du moins pas
+classiquement…)
+T-SQL – Fonctions et procédures
+T-SQL – Fonctions et procédures CogniTIC 44
+T-SQL – Fonctions et procédures CogniTIC 45
+• On distingue deux types de paramètres
+>> Les paramètres FORMELS, qui désignent le nom
+générique par lequel les paramètres sont référencés dans la
+déclaration de la fonction ou procédure
+>> Les paramètres RÉELS, qui représentent la valeur
+qui est réellement échangée entre le programme appelant et
+la fonction ou la procédure.
+Un paramètre est une valeur éventuellement échangée entre une
+fonction ou une procédure et le programme appelant
+• Les paramètres formels sont définis dans le code de création
+de la fonction ou de la procédure et n’ont de signification que dans ce
+contexte précis
+• Les paramètres formels ont un type qui ne peux avoir de
+contrainte comme la taille de la chaine de caractère (VARCHAR2) ou
+du nombre réel (NUMBER), par exemple
+• Un paramètre formel et son paramètre réel correspondant
+doivent être de même type
+T-SQL – Fonctions et procédures CogniTIC 46
+T-SQL – Fonctions et procédures CogniTIC 47
+• Les paramètres OUTPUT sont des paramètres d’une fonction ou procédure
+qui permettent de renvoyer une valeur au programme appelant, même s’il
+s’agit d’une procédure
+• Pour récupérer la valeur renvoyée, il nous faudra une variable du même
+type, passée en paramètre de la procédure ou fonction
+• Dans le cas d’une procédure, vous DEVREZ utiliser la commande EXECUTE
+pour utiliser une procédure qui demande un paramètre en mode OUTPUT
+T-SQL – Fonctions et procédures CogniTIC 48
+• Il est bien entendu possible de passer en paramètre une variable de
+type table contenant des données, pour, par exemple, faire une
+insertion multi-lignes
+Loi ACID
+Caractéristiques
+Concurrence d’accès aux données
+SET TRANSACTION
+Les verrous
+T-SQL – Transactions CogniTIC 50
+Toute transaction répond obligatoirement à la loi ACID, ce qui
+signifie qu’elle est :
+- ATOMIQUE :: Chacun des changements d’état de la transaction
+arrive ou aucun n’arrive
+- COHÉRENTE :: Une transaction est un changement d’état réussi
+ou annulé ; l’ensemble des actions qu’elle comprend respectent
+les contraintes d’intégrité de cet état
+- ISOLÉE :: Chaque transaction s’exécute une par une
+- DURABLE :: Si une transaction est validée, elle l’est de manière
+permanente et elle survit à tout incident ultérieur
+T-SQL – Transactions CogniTIC 51
+• En T-SQL, la valeur « AUTOCOMMIT » (validation automatique)
+est obligatoirement à ON en permanence. Cela signifie que si on ne l’
+énonce pas explicitement, tout ordre de modification de la base de
+données (DDL ou DML) sera une transaction a part entière
+• Cliquer sur le bouton « Execute » de la console implique autant de
+« COMMIT » (validation) qu’il y a d’ordre dans le script. Un ordre qui
+échoue met fin à l’exécution des ordres qui suivent et fait un
+« ROLLBACK » (annulation) du dernier ordre
+• Afin d’éviter un « COMMIT » automatique de chacun des ordre
+d’un script séparément, il faudra commencer l’ensemble de ces ordres
+par la commande « BEGIN TRANSACTION » et les terminer par un
+« COMMIT » ou un « ROLLBACK »
+T-SQL – Transactions CogniTIC 52
+• Il est possible de créer des points de sauvegarde afin de ne pas
+devoir revenir au début de la transaction et de faire plutôt un
+« ROLLBACK TRANSACTION nom_point_sauvegarde »
+• Plusieurs sessions utilisateurs peuvent être démarrées en
+parallèle. Cela implique que plusieurs transactions peuvent entrer en
+concurrence pour accéder à la même information d’une base de
+données. Il est par conséquent primordiale que SQL Server puisse
+gérer l’accès aux données afin de préserver leur intégrité
+• Deux type de manipulations sont disponibles afin de gérer la
+concurrence d’accès aux données :
+>> SET TRANSACTION : défini la transaction dans un mode de
+lecture spécifique, qui gèrera lui-même les verrous et la visibilité
+des données modifiées par la transaction
+>> Les « TableLocks » : ce sont des verrous que l’on peut
+soi-même imposer sur un ensemble de données afin qu’il ne soit
+pas accédé avant la fin de la transaction en cours
+T-SQL – Transactions CogniTIC 53
+T-SQL – Transactions CogniTIC 54
+• L’ordre « SET TRANSACTION » permet de
+modifier la visibilité et l’accès aux données des
+tables de la base de données durant une
+transaction donnée
+• Read UNCOMMITTED – Niveau le plus bas (0)
+Permet la lecture des objets d’une BD, que
+ceux-ci soient en cours de modification ou non,
+ou même s’ils changent d’état lors de l’analyse
+de la BD. La transaction ignore donc les verrous
+posés par d’autres transactions, bien qu’elle ne
+puisse les outrepasser. On parlera de données
+fantômes dans ce cas
+• Read COMMITED – Mode par défaut (Niveau 1)
+Spécifie que les verrous partagés sont maintenus durant la lecture des données
+pour éviter des lectures incorrectes. Les données peuvent néanmoins être
+modifiées avant la fin de la transaction, ce qui donne des lectures non
+renouvelées ou des données fantômes.
+T-SQL – Transactions CogniTIC 55
+• REPEATABLE Read – Niveau 2
+Des verrous sont placés dans toutes les données utilisées dans une
+requête, afin d'empêcher les autres utilisateurs de les mettre à jour.
+Toutefois, un autre utilisateur peut ajouter de nouvelles lignes
+fantômes dans un jeu de données par un utilisateur ; celles-ci seront
+incluses dans des lectures ultérieures dans la transaction courante.
+• SERIALIZABLE – Niveau 3
+Place un verrou sur une plage de données, empêchant les autres
+utilisateurs de les mettre à jour ou d'insérer des lignes dans le jeu de
+données, jusqu'à la fin de la transaction. Il s'agit du niveau d'isolation
+le plus restrictif parmi les quatre niveaux disponibles. Utilisez cette
+option uniquement lorsque cela s'avère nécessaire, car la
+concurrence d'accès est moindre. Cette option a le même effet que
+l'utilisation de l'option HOLDLOCK dans toutes les tables de toutes les
+instructions SELECT d'une transaction.
+T-SQL – Transactions CogniTIC 56
+• NOLOCK
+Dans une commande SELECT uniquement, permet de faire abstraction des
+verrous posés. Cela peut donner des informations fantômes
+• TABLELOCK
+Créer un verrou sur la table afin d’y empêcher toute modification tant que
+l’ordre n’est pas terminer
+• HOLDLOCK
+Peut être rajouté aux verrous existants afin de demander à ce que le verrou soit
+maintenu jusqu’à la fin de la transaction. Si tous les objets se retrouvent en
+HOLDLOCK dans une transaction, cela correspond au niveau d’isolation
+SERIALIZABLE
+Liste de l’ensemble des verrous sur le site MSDN
+http://msdn.microsoft.com/fr-fr/library/aa213026(v=sql.80).aspx
+Définition
+Syntaxes
+INSERTED et DELETED
+ROLLBACK et COMMIT
+RAISERROR et @@EROR
+Exemples de triggers DML
+Exemples de triggers DDL et LOGON
+Fonction UPDATE
+T-SQL – Triggers CogniTIC 58
+Un trigger est un programme stocké contenant une séquence
+d’instructions qui se déclenchent automatiquement lorsqu’un
+ordre particulier (DML, par exemple) sur une table de la base de
+données
+• Le T-SQL gère des « Triggers DML », c’est-à-dire les triggers
+liés aux ordres INSERT, UPDATE, DELETE, liés à une table ou une
+vue, les « Triggers DDL » appliqués aux ordres CREATE,
+ALTER, DROP, GRANT, DENY, REVOKE ou UPDATE STATISTICS, et
+les « Triggers Logon », déclenchés lors de l’authentification au
+serveur, avant l’établissement des sessions utilisateurs
+• Les Triggers T-SQL ne sont prévus que pour se déclencher
+après un ordre SQL (FOR/AFTER) ou à la place de cet ordre
+(INSTEAD OF). Les Triggers BEFORE peuvent être simulés,
+mais n’existent pas tels quels
+T-SQL – Triggers CogniTIC 59
+• SQL Server prévoit de récupérer l’information manipulée par
+l’utilisateur lors de l’action qui a déclenché le trigger. L’information est
+récupérée comme suit :
+>> Lors d’un INSERT, il n’existe que la table INSERTED
+qui contient les nouvelles données insérées
+>> Lors d’un DELETE, il n’existe que la table DELETED qui
+contient les élément supprimés
+>> Lors d’un UPDATE, il existe simultanément les tables
+INSERTED et DELETED. La table INSERTED contient les nouvelles
+données mises à jour et la table DELETED contient les anciennes
+données qui disparaitront
+T-SQL – Triggers CogniTIC 60
+T-SQL – Triggers CogniTIC 61
+• Ces tables contiennent automatiquement la même structure que
+les tables auxquelles elles sont liées : si une mise à jour à lieux sur la
+table CLIENT, la table INSERTED temporaire aura autant de colonne
+que la table CLIENT contiendra les lignes mises à jour
+T-SQL – Triggers CogniTIC 62
+• La fonction « UPDATE » est une fonction que l’on peut utiliser
+dans les triggers INSERT et UPDATE et qui permet de vérifier si
+telle ou telle colonne a subit une mise à jour lors de la requête qui a
+déclenché le trigger
+T-SQL – Triggers CogniTIC 63
+• Le but d’un trigger sera bien souvent de vérifier qu’un ordre est
+valide et de l’accepter dans la base de données ou le refuser, c’està-dire le « COMMIT » ou plutôt le « ROLLBACK »
+• En ce qui concerne le « COMMIT », cela se fera automatiquement,
+il n’est donc pas nécessaire (et même recommander de ne pas le
+faire) d’expliciter un « COMMIT » dans la transaction, cela lèvera
+une erreur qui annoncera que la transaction s’est terminée dans le
+trigger alors qu’elle sera validée
+• Le « ROLLBACK » quant à lui sera toujours nécessaire. Par défaut,
+le « ROLLBACK » annulera le trigger et l’instruction qui l’ont
+démarré. Pour n’annuler que les ordres du triggers, il faudra créer
+une transaction explicitement dans le trigger
+• Les ordres de validation du trigger peuvent bien entendu être
+contenu dans une conditionnelle telle que le IF
+• Lorsque l’on désire afficher un message d’erreur ou réagir par
+rapport à une erreur levée par le système, il faudra utiliser la
+commande « RAISERROR » ou encore la variable globale
+« @@ERROR »
+• Le RAISERROR permet juste l’affichage d’un message d’erreur à
+l’utilisateur, en plus du message classique fourni par le système et
+d’un numéro d’erreur. Dans sa forme la plus simple, il s’écrit :
+RAISERROR XXXX ‘message d’erreur’
+• La variable globale « @@ERROR » renvoie 0 si aucune erreur n’a
+été levée par le système. Il es possible de réagir en fonction de la
+variable et de par exemple, faire un ROLLBACK si l’erreur est
+survenue
+T-SQL – Triggers CogniTIC 64
+T-SQL – Triggers CogniTIC 65
+T-SQL – Triggers CogniTIC 66 • Liste des évènements DDL auxquels il est possible lier
+les triggers sur la base de données :
+http://msdn.microsoft.com/en-us/library/bb522542.aspx</textarea
+>
 <!--**********************************-->
 <!--Ressources.pdf documents formation-->
 <!--**********************************-->
@@ -371,56 +2387,56 @@
     <button style="text-align: start" title="consult ressource url">
       💾&nbsp;Ressources captures projects Angular / CV
     </button>
-    &nbsp;&nbsp;📑<a
+    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;📑<a
       href="assets\Ressources-side\Capture d'écran 2023-12-09 091736.png"
       style="display: inline"
       >Curriculum Vitae</a
     >
-    &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    🎞️&nbsp;<a
       href="assets\Ressources-side\Capture d'écran 2023-12-10 151148.png"
       style="display: inline"
       >Demo Angular forms-demandeur emploi</a
-    >&nbsp; &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets/Ressources-side/Capture d'écran 2023-12-10 151208.png"
       style="display: inline"
       >Demo Angular forms-authguard</a
-    >&nbsp;&nbsp; &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\Ressources-side\Capture d'écran 2023-12-10 151625.png"
       style="display: inline"
       >Demo Angular forms-directive</a
-    >&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\Ressources-side\Capture d'écran 2023-12-10 151558.png"
       style="display: inline"
       >Demo Angular ajout panier avec service</a
-    >&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<br /><a
       href="assets\Ressources-side\Capture d'écran 2023-12-10 151538.png"
       style="display: inline"
-      >Demo Angular ajout liste fans avec service et interface</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+      >Demo Angular ajout liste fans avec service/interface</a
+    >🎞️&nbsp;<a
       href="assets\Ressources-side\Capture d'écran 2023-12-10 151248.png"
       style="display: inline"
       >Angular chrono</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\Ressources-side\Capture d'écran 2023-12-09 104941.png"
       style="display: inline"
       >Demo Angular console Power BI mobile</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\My-Project.js\403415714_749209790582041_850742286997544432_n.png"
       style="display: inline"
       >My-Project.JS: Home Page</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\My-Project.js\403403483_2011181992571075_4210447451025628142_n.png"
       style="display: inline"
       >My-Project.JS: Product1</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\My-Project.js\403416136_320600530815641_7771459393434636562_n.png"
       style="display: inline"
       >My-Project.JS: Product2</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\My-Project.js\403417641_1395820304642185_4432834498597874268_n.png"
       style="display: inline"
       >My-Project.JS: Product3</a
-    >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🎞️&nbsp;&nbsp;<a
+    >🎞️&nbsp;<a
       href="assets\My-Project.js\403416174_337702642302025_4194936285091385968_n.png"
       style="display: inline"
       >My-Project.JS: Product4</a

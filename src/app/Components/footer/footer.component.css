@@ -1,13 +1,13 @@
 footer {
-    position: absolute;
-    inset-block-end: -485px;
-    inline-size: 100%;
-    inline-size: 2080px;
-    block-size: 35px;
-    margin: 10px;
-    padding: 2px;
-    border-radius: 5px;
-    background-color: rgb(224, 240, 243);
-    border: 1.5px solid rgb(105, 102, 102);
-    color: rgb(0, 0, 0);
-  }
+  position: absolute;
+  inset-block-end: -850px;
+  inline-size: 100%;
+  inline-size: 1840px;
+  block-size: 35px;
+  margin: 10px;
+  padding: 2px;
+  border-radius: 5px;
+  background-color: rgb(224, 240, 243);
+  border: 1.5px solid rgb(105, 102, 102);
+  color: rgb(0, 0, 0);
+}
