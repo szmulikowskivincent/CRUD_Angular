@@ -16,6 +16,7 @@ footer {
   inline-size: 98.2%; /* Utilisation de 100% de la largeur de l'écran */
   inset-block-end: -10px;
   block-size: 65px;
+  margin:10px;
   border-radius: 5px;
   background-color: rgb(140, 202, 233);
   border: solid 1.5px black;
