@@ -29,7 +29,6 @@ button {
   border: solid 2.5px rgb(17, 0, 255);
 }
 
-
 /* Media query pour ajuster les styles sur des écrans plus petits */
 @media only screen and (max-inline-size: 600px) {
   footer

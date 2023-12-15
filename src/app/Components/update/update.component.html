@@ -1,229 +1,239 @@
-<div id="tout2">
-  <form [formGroup]="updateForm" (ngSubmit)="addUpdate()">
-    &nbsp;&nbsp;&nbsp;📝
+<div
+  style="
+    border: solid 1.5px black;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+  "
+>
+  <div id="tout2">
+    <form [formGroup]="updateForm" (ngSubmit)="addUpdate()">
+      &nbsp;&nbsp;&nbsp;📝
+      <button
+        style="
+          display: inline;
+          inline-size: 85px;
+          block-size: 30px;
+          margin: 10px;
+          font-size: 16px;
+          color: white;
+          background-color: red;
+        "
+      >
+        Delete
+      </button>
+      &nbsp;
+      <button
+        style="
+          display: inline;
+          inline-size: 85px;
+          block-size: 30px;
+          margin: 10px;
+          font-size: 16px;
+          color: white;
+          background-color: rgb(0, 17, 255);
+        "
+      >
+        Update
+      </button>
+      &nbsp;&nbsp;
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        placeholder="Date"
+        required="true"
+        [required]="true"
+      />
+      <span
+        *ngIf="
+          updateForm.get('date')?.touched &&
+          updateForm.get('dat')?.hasError('required')
+        "
+      >
+        La date est requise.
+      </span>
+      <span
+        *ngIf="
+          updateForm.get('date')?.touched &&
+          'invalidDate' &&
+          updateForm.get('date')?.hasError('required')
+        "
+      >
+        La date n'est pas valide.
+      </span>
+      <span
+        *ngIf="
+          updateForm.get('date')?.touched &&
+          'dateTooEarly' &&
+          updateForm.get('date')?.hasError('required')
+        "
+      >
+        La date doit être après 2010.
+      </span>
+      &nbsp;&nbsp;
+      <input
+        type="text"
+        id="nom"
+        formControlName="description"
+        placeholder="Description"
+        minlength="5"
+        maxlength="15"
+        required="true"
+        [required]="true"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          updateForm.get('description')?.touched &&
+          updateForm.get('description')?.hasError('required')
+        "
+      >
+        La déscription est requise.
+      </span>
+      <span
+        style="color: red"
+        *ngIf="
+          updateForm.get('description')?.touched &&
+          updateForm.get('description')?.hasError('minlength')
+        "
+      >
+        La déscription doit avoir au moins 5 caractères.
+      </span>
+      <span
+        style="color: red"
+        *ngIf="
+          updateForm.get('description')?.touched &&
+          updateForm.get('description')?.hasError('maxlength')
+        "
+      >
+        La description doit avoir au maximum 15 caractères.
+      </span>
+      &nbsp;&nbsp;
+      <input
+        type="text"
+        id="utl"
+        formControlName="url"
+        placeholder="url//..."
+        minlength="10"
+        maxlength="55"
+        required="true"
+        [required]="true"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          updateForm.get('url')?.touched &&
+          updateForm.get('url')?.hasError('required')
+        "
+      >
+        L' url est requise.
+      </span>
+      <span
+        *ngIf="
+          updateForm.get('url')?.hasError('invalidUrl') &&
+          updateForm.get('url')?.touched
+        "
+      >
+        L'URL n'est pas valide.
+      </span>
+      &nbsp;&nbsp;
+      <input
+        style="
+          inline-size: 236px;
+          block-size: 35px;
+          margin: 8px;
+          color: black;
+          background-color: white;
+          border-radius: 5px;
+          border: solid 2.5px rgb(255, 255, 255);
+        "
+        type="file"
+        id="image"
+        formControlName="image"
+        accept="image/*"
+        required="true"
+        [required]="true"
+      />
+      <span
+        style="color: red"
+        *ngIf="
+          updateForm.get('image')?.touched &&
+          updateForm.get('image')?.hasError('required')
+        "
+      >
+        L'image est requise.
+      </span>
+      <br />
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+      <button
+        style="
+          display: inline;
+          inline-size: 85px;
+          block-size: 30px;
+          font-size: 16px;
+          color: white;
+          background-color: rgb(0, 17, 255);
+        "
+        type="submit"
+        [disabled]=""
+        (click)="addToMyList()"
+      >
+        Submit
+      </button>
+      &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+      <button
+        style="
+          display: inline;
+          inline-size: 85px;
+          block-size: 30px;
+          font-size: 16px;
+          color: white;
+          background-color: rgb(255, 0, 0);
+        "
+        type="reset"
+      >
+        Reset
+      </button>
+    </form>
+  </div>
+</div>
+<!--New data update-->
+<ul>
+  <p *ngFor="let update of updates" class="update-item">
+    📁 &nbsp;&nbsp;
     <button
       style="
-        display: inline;
         inline-size: 85px;
         block-size: 30px;
-        margin: 10px;
         font-size: 16px;
         color: white;
         background-color: red;
       "
+      (click)="removeUpdate(update.id)"
     >
       Delete
     </button>
-    &nbsp;
+    &nbsp;&nbsp;
     <button
       style="
-        display: inline;
         inline-size: 85px;
         block-size: 30px;
-        margin: 10px;
         font-size: 16px;
         color: white;
         background-color: rgb(0, 17, 255);
       "
+      (click)="removeUpdate(update.id)"
     >
       Update
     </button>
-    &nbsp;&nbsp;
-    <input
-      type="date"
-      id="date"
-      formControlName="date"
-      placeholder="Date"
-      required="true"
-      [required]="true"
-    />
-    <span
-      *ngIf="
-        updateForm.get('date')?.touched &&
-        updateForm.get('dat')?.hasError('required')
-      "
+    &nbsp; &nbsp; Date: &nbsp; {{ update.date | date : "medium" }} - &nbsp;
+    Ressource:{{ update.description }} - URL: &nbsp;<a
+      href="{{ update.url }}"
+      class="url-link"
+      target="_blank"
+      >{{ update.url }} - {{ update.image }}</a
     >
-      La date est requise.
-    </span>
-    <span
-      *ngIf="
-        updateForm.get('date')?.touched &&
-        'invalidDate' &&
-        updateForm.get('date')?.hasError('required')
-      "
-    >
-      La date n'est pas valide.
-    </span>
-    <span
-      *ngIf="
-        updateForm.get('date')?.touched &&
-        'dateTooEarly' &&
-        updateForm.get('date')?.hasError('required')
-      "
-    >
-      La date doit être après 2010.
-    </span>
-    &nbsp;&nbsp;
-    <input
-      type="text"
-      id="nom"
-      formControlName="description"
-      placeholder="Description"
-      minlength="5"
-      maxlength="15"
-      required="true"
-      [required]="true"
-    />
-    <span
-      style="color: red"
-      *ngIf="
-        updateForm.get('description')?.touched &&
-        updateForm.get('description')?.hasError('required')
-      "
-    >
-      La déscription est requise.
-    </span>
-    <span
-      style="color: red"
-      *ngIf="
-        updateForm.get('description')?.touched &&
-        updateForm.get('description')?.hasError('minlength')
-      "
-    >
-      La déscription doit avoir au moins 5 caractères.
-    </span>
-    <span
-      style="color: red"
-      *ngIf="
-        updateForm.get('description')?.touched &&
-        updateForm.get('description')?.hasError('maxlength')
-      "
-    >
-      La description doit avoir au maximum 15 caractères.
-    </span>
-    &nbsp;&nbsp;
-    <input
-      type="text"
-      id="utl"
-      formControlName="url"
-      placeholder="url//..."
-      minlength="10"
-      maxlength="55"
-      required="true"
-      [required]="true"
-    />
-    <span
-      style="color: red"
-      *ngIf="
-        updateForm.get('url')?.touched &&
-        updateForm.get('url')?.hasError('required')
-      "
-    >
-      L' url est requise.
-    </span>
-    <span
-      *ngIf="
-        updateForm.get('url')?.hasError('invalidUrl') &&
-        updateForm.get('url')?.touched
-      "
-    >
-      L'URL n'est pas valide.
-    </span>
-    &nbsp;&nbsp;
-    <input
-      style="
-        inline-size: 236px;
-        block-size: 35px;
-        margin: 8px;
-        color: black;
-        background-color: white;
-        border-radius: 5px;
-        border: solid 2.5px rgb(255, 255, 255);
-      "
-      type="file"
-      id="image"
-      formControlName="image"
-      accept="image/*"
-      required="true"
-      [required]="true"
-    />
-    <span
-      style="color: red"
-      *ngIf="
-        updateForm.get('image')?.touched &&
-        updateForm.get('image')?.hasError('required')
-      "
-    >
-      L'image est requise.
-    </span>
-    <br />
-    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-    <button
-      style="
-        display: inline;
-        inline-size: 85px;
-        block-size: 30px;
-        font-size: 16px;
-        color: white;
-        background-color: rgb(0, 17, 255);
-      "
-      type="submit"
-      [disabled]=""
-      (click)="addToMyList()"
-    >
-      Submit
-    </button>
-    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-    <button
-      style="
-        display: inline;
-        inline-size: 85px;
-        block-size: 30px;
-        font-size: 16px;
-        color: white;
-        background-color: rgb(255, 0, 0);
-      "
-      type="reset"
-    >
-      Reset
-    </button>
-    <ul>
-      <p *ngFor="let update of updates" class="update-item">
-        📁 &nbsp;&nbsp;
-        <button
-          style="
-            inline-size: 85px;
-            block-size: 30px;
-            font-size: 16px;
-            color: white;
-            background-color: red;
-          "
-          (click)="removeUpdate(update.id)"
-        >
-          Delete
-        </button>
-        &nbsp;&nbsp;
-        <button
-          style="
-            inline-size: 85px;
-            block-size: 30px;
-            font-size: 16px;
-            color: white;
-            background-color: rgb(0, 17, 255);
-          "
-          (click)="removeUpdate(update.id)"
-        >
-          Update
-        </button>
-        &nbsp; &nbsp; Date: &nbsp; {{ update.date | date : "medium" }} - &nbsp;
-        Ressource:{{ update.description }} - URL: &nbsp;<a
-          href="{{ update.url }}"
-          class="url-link"
-          target="_blank"
-          >{{ update.url }} - {{ update.image }}</a
-        >
-        ⭐
-      </p>
-    </ul>
-  </form>
-</div>
+    ⭐
+  </p>
+</ul>
