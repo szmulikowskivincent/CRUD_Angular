@@ -1,4 +1,7 @@
-<nav class="nav">
+<nav
+  class="nav"
+  style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px"
+>
   <img
     title="szmulikowski vincent"
     style="
@@ -10,20 +13,33 @@
     width="3.5%"
   />
   <img style="margin: 20px" src="assets\logo\logo_Ressources.png" width="10%" />
-  <ul style="margin: 555px"></ul>
-  <button
-    title="update ressources"
+
+  <ul style="flex: 1"></ul>
+  <!-- Utilisation de flex pour occuper l'espace restant -->
+  <div
     style="
-      background-color: blue;
-      color: white;
-      inline-size: 105px;
-      block-size: 35px;
-      font-size: 16px;
-      border-radius: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
     "
-    routerLink="/Update"
   >
-    Update
-  </button>
-  <img src="assets\logo\logo_Angular.png" width="15%" />
+    <button
+      title="update ressources"
+      style="
+        background-color: blue;
+        color: white;
+        inline-size: 105px;
+        block-size: 35px;
+        font-size: 16px;
+        border-radius: 5px;
+        flex: 1; /* Utilisation de flex pour s'adapter à la largeur disponible */
+      "
+      routerLink="/Update"
+    >
+      Update
+    </button>
+    <img src="assets\logo\logo_Angular.png" width="15%" style="flex: 1" />
+  </div>
 </nav>
