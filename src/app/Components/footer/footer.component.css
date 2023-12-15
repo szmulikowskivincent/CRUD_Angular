@@ -15,9 +15,7 @@ footer {
   position: relative; /* Utilisation de "relative" au lieu de "absolute" */
   inline-size: 98.2%; /* Utilisation de 100% de la largeur de l'écran */
   inset-block-end: -10px;
-  block-size: 35px;
-  margin: 10px;
-  block-size: 55px;
+  block-size: 65px;
   border-radius: 5px;
   background-color: rgb(140, 202, 233);
   border: solid 1.5px black;
@@ -25,9 +23,6 @@ footer {
 }
 
 button {
-  inline-size: 110px;
-  block-size: 40px;
-  font-size: 13px;
   margin:0px;
   border-radius: 5px;
   border: solid 2.5px rgb(17, 0, 255);
