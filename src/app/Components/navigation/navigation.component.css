@@ -1,27 +1,47 @@
+@media only screen and (max-inline-size: 600px) {
+  /* Styles pour les écrans étroits */
+}
+
+@media only screen and (min-inline-size: 601px) and (max-inline-size: 1024px) {
+  /* Styles pour les écrans moyens */
+}
+
+@media only screen and (min-inline-size: 1025px) {
+  /* Styles pour les écrans larges */
+}
+
+/* Styles pour l'écran large */
 nav {
   display: flex;
   align-items: center;
-  inline-size: 1840px;
+  inline-size: 98.2%; /* Utilisation de 100% de la largeur de l'écran */
   block-size: 85px;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgb(224, 240, 243);
-  border: 1.5px solid rgb(105, 102, 102);
-}
-
-h1 {
-  color: rgb(231, 129, 129);
-  border: solid 1.5px rgb(184, 178, 178);
-  border-radius: 5px;
-  padding: 5px;
+  background-color: rgb(140, 202, 233);
+  border: solid 1.5px black;
 }
 
 ul li {
   display: table-cell;
-  padding: 25px;
-  margin:1120px;
+  padding: 15px; /* Ajustement de l'espacement */
+  margin: 0; /* Suppression de la marge inutile */
 }
+
+/* Media query pour ajuster les styles sur des écrans plus petits */
+@media only screen and (max-inline-size: 600px) {
+  nav {
+    flex-direction: column; /* Alignement vertical des éléments */
+  }
+
+  ul li {
+    display: block; /* Empilez les éléments les uns sur les autres */
+    padding: 10px; /* Ajustement de l'espacement */
+    text-align: center; /* Centre le texte */
+  }
+}
+
 
 
 

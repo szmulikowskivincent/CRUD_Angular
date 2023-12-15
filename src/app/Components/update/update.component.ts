@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UpdateService } from 'src/Services/update.service';
 
 interface IUpdate {
@@ -7,7 +12,7 @@ interface IUpdate {
   description: string;
   url: string;
   date: Date;
-  image: string | null; 
+  image: string | null;
 }
 
 @Component({
@@ -17,6 +22,7 @@ interface IUpdate {
 })
 
 export class UpdateComponent implements OnInit {
+
   updateForm!: FormGroup;
   updates: IUpdate[] = [];
   myList: any[] = [];
@@ -29,22 +35,27 @@ export class UpdateComponent implements OnInit {
   }
 
   urlValidator(control: AbstractControl): { [key: string]: boolean } | null {
-  // Expression régulière pour vérifier le format de l'URL
-  const urlPattern = /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\/)?(\S)*$/;
+    // Expression régulière pour vérifier le format de l'URL
+    const urlPattern =
+      /^(http(s)?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\/)?(\S)*$/;
 
-  if (control.value && !urlPattern.test(control.value)) {
-    return { 'invalidUrl': true };
+    if (control.value && !urlPattern.test(control.value)) {
+      return { invalidUrl: true };
+    }
+
+    return null; // L'URL est valide
   }
-
-  return null; // L'URL est valide
-}
 
   initializeForm(): void {
     this.updateForm = this.fb.group({
       date: ['', [Validators.required]],
       description: [
         '',
-        [Validators.required, Validators.minLength(5), Validators.maxLength(15)],
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(15),
+        ],
       ],
       url: ['', Validators.required],
       image: [null, Validators.required],
@@ -65,16 +76,15 @@ export class UpdateComponent implements OnInit {
       this.updates = this.updateService.getUpdate();
       this.saveUpdatesToLocalStorage(); // Sauvegarder dans le local storage
       this.updateForm.reset();
-      alert("Vous allez ajouter des ressources à la liste!");
+      alert('Vous allez ajouter des ressources à la liste!');
     } else {
-      // Le formulaire n'est pas valide, gérer l'erreur ou fournir une rétroaction à l'utilisateur
-      alert("Le formulaire n'est pas valide. Veuillez vérifier vos entrées.");
+      alert("⚠️Le formulaire n'est pas valide. Veuillez vérifier vos entrées.");
     }
   }
 
   saveImageToLocal(imageFile: File): string {
     // Logique pour sauvegarder l'image dans le local storage
-    const imageUrl = 'url_de_l_image'; // Remplacez cela par la vraie URL ou la logique de sauvegarde
+    const imageUrl = 'url_de_l_image'; 
     return imageUrl;
   }
 
@@ -86,7 +96,6 @@ export class UpdateComponent implements OnInit {
 
   addToMyList(): void {
     const newItem = {
-      /* détails de l'élément à ajouter */
     };
     this.myList.push(newItem);
   }
@@ -105,23 +114,4 @@ export class UpdateComponent implements OnInit {
       this.updates = JSON.parse(storedUpdates);
     }
   }
-
-  downloadDataAsJson(): void {
-    const jsonData = JSON.stringify(this.updates);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'updates.json';
-
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }
 }
-
-
-

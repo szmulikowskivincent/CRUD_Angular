@@ -1,3 +1,15 @@
+@media only screen and (max-inline-size: 600px) {
+  /* Styles pour les écrans étroits */
+}
+
+@media only screen and (min-inline-size: 601px) and (max-inline-size: 1024px) {
+  /* Styles pour les écrans moyens */
+}
+
+@media only screen and (min-inline-size: 1025px) {
+  /* Styles pour les écrans larges */
+}
+
 input {
   inline-size: 236px;
   block-size: 35px;
@@ -11,6 +23,7 @@ input {
 button {
   inline-size: 110px;
   block-size: 40px;
+  font-size: 13px;
   border-radius: 5px;
   border: solid 2.5px rgb(17, 0, 255);
 }
@@ -25,16 +38,10 @@ button {
   border-inline-end: 4px solid green;
 }
 
-table {
-  border-spacing: 4cm;
-  inline-size: 62.5%;
-  border-collapse: separate;
-  border-spacing: 0 0.5cm;
-  margin: 5px;
-}
 th,
 td {
   text-align: start;
   border-block-end: 1px solid black;
   padding: 8px;
 }
+
